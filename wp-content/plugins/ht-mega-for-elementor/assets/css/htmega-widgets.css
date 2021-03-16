@@ -786,7 +786,7 @@ ul.accordion--4 li .description a:hover {
 }
 
 ul.accordion--4 li .bgDescription {
-  background: transparent url(img/gallery/bgDescription.png) repeat-x top left;
+  background: transparent url(http://dineshreddyalla.github.io/githubwp/wp-content/plugins/ht-mega-for-elementor/assets/css/img/gallery/bgDescription.png) repeat-x top left;
   height: 340px;
   position: absolute;
   bottom: 0px;
@@ -865,7 +865,7 @@ ul.accordion--4 li .bgDescription {
 }
 
 .accor_wrapper .single_accordion{
-  background: #000 url(img/gallery/gallery-e1.jpg) no-repeat center center;
+  background: #000 url(http://dineshreddyalla.github.io/githubwp/wp-content/plugins/ht-mega-for-elementor/assets/css/img/gallery/gallery-e1.jpg) no-repeat center center;
   background-size: cover;
 }
 
@@ -2207,7 +2207,7 @@ a.price_btn{
 }
 
 .htmega-pricing-ribon::before {
-    content: url(../images/pricing/pricing-ribon.png);
+    content: url(http://dineshreddyalla.github.io/githubwp/wp-content/plugins/ht-mega-for-elementor/assets/images/pricing/pricing-ribon.png);
     left: 30px;
     position: absolute;
     top: -15px;
@@ -8187,7 +8187,7 @@ button.htmega-notify-button {
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(img/bg/bg-image-12.jpg);
+    background-image: url(http://dineshreddyalla.github.io/githubwp/wp-content/plugins/ht-mega-for-elementor/assets/css/img/bg/bg-image-12.jpg);
     position: relative;
     display: inline-block;
     text-align: center;
@@ -8201,7 +8201,7 @@ button.htmega-notify-button {
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(img/bg/bg-image-12.jpg);
+    background-image: url(http://dineshreddyalla.github.io/githubwp/wp-content/plugins/ht-mega-for-elementor/assets/css/img/bg/bg-image-12.jpg);
     width: 240px;
     position: absolute;
     top: 0;
@@ -8695,7 +8695,7 @@ button.htmega-notify-button {
     width: 300%;
     height: 50px;
     opacity: 0;
-    background: url(../images/icons/line.svg) no-repeat top left;
+    background: url(http://dineshreddyalla.github.io/githubwp/wp-content/plugins/ht-mega-for-elementor/assets/images/icons/line.svg) no-repeat top left;
     -webkit-transform: translate3d(130px, 0, 0);
     transform: translate3d(130px, 0, 0);
     -webkit-transition: -webkit-transform 0s 0.3s, opacity 0.3s;
@@ -13373,7 +13373,7 @@ a.htmega-downloadbtn {
  * Business Hours
 */
 .shapebg_image--1 {
-    background-image: url(img/others/business-shape.png);
+    background-image: url(http://dineshreddyalla.github.io/githubwp/wp-content/plugins/ht-mega-for-elementor/assets/css/img/others/business-shape.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -13502,7 +13502,7 @@ a.htmega-downloadbtn {
 /* Business Hours style Four */
 .htmega-business-horurs-4 .business-hrs-inner {
     padding: 30px 50px;
-    background-image: url(img/bg/bg-image-40.jpg);
+    background-image: url(http://dineshreddyalla.github.io/githubwp/wp-content/plugins/ht-mega-for-elementor/assets/css/img/bg/bg-image-40.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
