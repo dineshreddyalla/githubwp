@@ -1,4 +1,4 @@
-(function($){
+;(function($){
 "use strict";
 
     var WidgetTestimonialCarouselHandler = function ($scope, $) {
@@ -330,7 +330,7 @@
 
     // Google Map
     var WidgetGoogleMapHandler = function ($scope, $) {
-        var googlemap_elem = $scope.find('#htmega-google-map').eq(0);
+        var googlemap_elem = $scope.find('.htmega-google-map').eq(0);
         if ( googlemap_elem.length > 0 ) {
             var mapsettings = googlemap_elem.data('mapmarkers');
             var mapsoptions = googlemap_elem.data('mapoptions');

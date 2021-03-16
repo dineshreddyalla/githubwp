@@ -21,7 +21,7 @@ class HTMega_Template_Library{
     }
 
     function __construct(){
-        self::$buylink = isset( $this->get_templates_info()['pro_link'][0]['url']) ? $this->get_templates_info()['pro_link'][0]['url'] : '#';
+        self::$buylink = isset( HTMega_Addons_Elementor::$template_info['pro_link'][0]['url'] ) ? HTMega_Addons_Elementor::$template_info['pro_link'][0]['url'] : '#';
         if ( is_admin() ) {
             add_action( 'admin_menu', [ $this, 'admin_menu' ], 225 );
             add_action( 'wp_ajax_htmega_ajax_request', [ $this, 'templates_ajax_request' ] );
@@ -89,18 +89,23 @@ class HTMega_Template_Library{
 
     public static function request_remote_templates_info( $force_update ) {
         global $wp_version;
-        $body_args = apply_filters( 'htmegatemplates/api/get_templates/body_args', self::$api_args );
+
+        $timeout = ( $force_update ) ? 25 : 8;
         $request = wp_remote_get(
             self::get_api_endpoint(),
             [
-                'timeout'    => $force_update ? 25 : 10,
-                'user-agent' => 'WordPress/' . $wp_version . '; ' . home_url(),
-                'body'       => $body_args,
-                'sslverify'  => false,
+                'timeout'    => $timeout,
+                'user-agent' => 'WordPress/' . $wp_version . '; ' . home_url()
             ]
         );
+
+        if ( is_wp_error( $request ) || 200 !== (int) wp_remote_retrieve_response_code( $request ) ) {
+            return [];
+        }
+
         $response = json_decode( wp_remote_retrieve_body( $request ), true );
         return $response;
+
     }
 
     /**
@@ -197,14 +202,21 @@ class HTMega_Template_Library{
     /*
     * Remote data
     */
-    function templates_get_content_remote_request( $templateurl ){
-        $url = $templateurl;
-        $response = wp_remote_get( $url, array(
-            'timeout'   => 60,
-            'sslverify' => false
+    public function templates_get_content_remote_request( $templateurl ){
+        global $wp_version;
+
+        $response = wp_remote_get( $templateurl, array(
+            'timeout'    => 25,
+            'user-agent' => 'WordPress/' . $wp_version . '; ' . home_url()
         ) );
+
+        if ( is_wp_error( $response ) || 200 !== (int) wp_remote_retrieve_response_code( $response ) ) {
+            return [];
+        }
+
         $result = json_decode( wp_remote_retrieve_body( $response ), true );
         return $result;
+
     }
 
     /*

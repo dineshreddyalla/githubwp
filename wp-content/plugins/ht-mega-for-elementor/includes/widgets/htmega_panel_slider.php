@@ -105,7 +105,7 @@ class HTMega_Elementor_Widget_Panel_Slider extends Widget_Base {
                 'panel_slider_list',
                 [
                     'type'    => Controls_Manager::REPEATER,
-                    'fields'  => array_values( $repeater->get_controls() ),
+                    'fields'  =>  $repeater->get_controls(),
                     'default' => [
                         [
                             'slider_title' => __( 'Tattoo Boy From New York', 'htmega-addons' ),
@@ -521,10 +521,6 @@ class HTMega_Elementor_Widget_Panel_Slider extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
-                    'scheme' => [
-                        'type' => Scheme_Color::get_type(),
-                        'value' => Scheme_Color::COLOR_1,
-                    ],
                     'default'=>'',
                     'selectors' => [
                         '{{WRAPPER}} .panel-slider .content h2' => 'color: {{VALUE}}',
@@ -582,10 +578,6 @@ class HTMega_Elementor_Widget_Panel_Slider extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
-                    'scheme' => [
-                        'type' => Scheme_Color::get_type(),
-                        'value' => Scheme_Color::COLOR_1,
-                    ],
                     'default'=>'',
                     'selectors' => [
                         '{{WRAPPER}} .panel-slider .content span' => 'color: {{VALUE}}',
@@ -657,10 +649,6 @@ class HTMega_Elementor_Widget_Panel_Slider extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
-                            'scheme' => [
-                                'type' => Scheme_Color::get_type(),
-                                'value' => Scheme_Color::COLOR_1,
-                            ],
                             'default' => '#ffffff',
                             'selectors' => [
                                 '{{WRAPPER}} .htmega-carousel-activation button.slick-arrow' => 'color: {{VALUE}};',
@@ -803,10 +791,6 @@ class HTMega_Elementor_Widget_Panel_Slider extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
-                            'scheme' => [
-                                'type' => Scheme_Color::get_type(),
-                                'value' => Scheme_Color::COLOR_1,
-                            ],
                             'default' => '#00282a',
                             'selectors' => [
                                 '{{WRAPPER}} .htmega-carousel-activation button.slick-arrow:hover' => 'color: {{VALUE}};',

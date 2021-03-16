@@ -123,7 +123,7 @@ class HTMega_Elementor_Widget_Testimonial_Grid extends Widget_Base {
                 'htmega_testimonial_list',
                 [
                     'type'    => Controls_Manager::REPEATER,
-                    'fields'  => array_values( $repeater->get_controls() ),
+                    'fields'  => $repeater->get_controls(),
                     'default' => [
 
                         [
@@ -206,10 +206,6 @@ class HTMega_Elementor_Widget_Testimonial_Grid extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
-                    'scheme' => [
-                        'type' => Scheme_Color::get_type(),
-                        'value' => Scheme_Color::COLOR_1,
-                    ],
                     'default' => '#383838',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-testimonialgrid-area .testimonal .content h4' => 'color: {{VALUE}};',
@@ -271,10 +267,6 @@ class HTMega_Elementor_Widget_Testimonial_Grid extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
-                    'scheme' => [
-                        'type' => Scheme_Color::get_type(),
-                        'value' => Scheme_Color::COLOR_1,
-                    ],
                     'default' => '#1834a6',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-testimonialgrid-area .testimonal .content span' => 'color: {{VALUE}};',
@@ -368,10 +360,6 @@ class HTMega_Elementor_Widget_Testimonial_Grid extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
-                    'scheme' => [
-                        'type' => Scheme_Color::get_type(),
-                        'value' => Scheme_Color::COLOR_1,
-                    ],
                     'default' => '#5b5b5b',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-testimonialgrid-area .testimonal p' => 'color: {{VALUE}};',
@@ -432,10 +420,6 @@ class HTMega_Elementor_Widget_Testimonial_Grid extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
-                    'scheme' => [
-                        'type' => Scheme_Color::get_type(),
-                        'value' => Scheme_Color::COLOR_1,
-                    ],
                     'default' => '#ffcf0e',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-testimonialgrid-area .clint-info .rating' => 'color: {{VALUE}};',

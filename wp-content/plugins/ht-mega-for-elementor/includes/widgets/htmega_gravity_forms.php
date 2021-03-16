@@ -266,11 +266,6 @@ class HTMega_Elementor_Widget_Gravity_Forms extends Widget_Base {
                 [
                     'label' => __( 'Background Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
-                    'scheme' => [
-                        'type' => Scheme_Color::get_type(),
-                        'value' => Scheme_Color::COLOR_1,
-                    ],
-                    'default' => '',
                     'selectors' => [
                         '{{WRAPPER}} .gform_wrapper .gfield input[type="text"], {{WRAPPER}} .gform_wrapper .gfield textarea, {{WRAPPER}} .gform_wrapper .gfield select' => 'background-color: {{VALUE}}',
                     ],
@@ -282,11 +277,6 @@ class HTMega_Elementor_Widget_Gravity_Forms extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
-                    'scheme' => [
-                        'type' => Scheme_Color::get_type(),
-                        'value' => Scheme_Color::COLOR_1,
-                    ],
-                    'default' => '',
                     'selectors'         => [
                         '{{WRAPPER}} .gform_wrapper .gfield input[type="text"], {{WRAPPER}} .gform_wrapper .gfield textarea, {{WRAPPER}} .gform_wrapper .gfield select' => 'color: {{VALUE}}',
                     ],

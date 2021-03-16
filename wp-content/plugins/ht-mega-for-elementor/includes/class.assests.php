@@ -320,6 +320,7 @@ if ( !class_exists( 'HTMega_Elementor_Addons_Assests' ) ) {
             $scripts = $this->get_scripts();
             $styles  = $this->get_styles();
 
+            wp_deregister_script( 'swiper' );
             // Register Scripts
             foreach ( $scripts as $handle => $script ) {
                 $deps = ( isset( $script['deps'] ) ? $script['deps'] : false );
@@ -340,8 +341,9 @@ if ( !class_exists( 'HTMega_Elementor_Addons_Assests' ) ) {
                 'elementorURL'     => admin_url( 'edit.php?post_type=elementor_library' ),
                 'version'          => HTMEGA_VERSION,
                 'pluginURL'        => plugin_dir_url( __FILE__ ),
-                'alldata'          => ( !empty( HTMega_Template_Library::instance()->get_templates_info()['templates'] ) ? HTMega_Template_Library::instance()->get_templates_info()['templates']:array() ),
-                'prolink'          => ( !empty( HTMega_Template_Library::instance()->get_pro_link() ) ? HTMega_Template_Library::instance()->get_pro_link() : '#' ),
+                'alldata'          => !empty( HTMega_Addons_Elementor::$template_info['templates'] ) ? HTMega_Addons_Elementor::$template_info['templates'] : array(),
+                'prolink'          => isset( HTMega_Addons_Elementor::$template_info['pro_link'][0]['url'] ) ? HTMega_Addons_Elementor::$template_info['pro_link'][0]['url'] : '#',
+
                 'prolabel'         => esc_html__( 'Pro', 'htmega-addons' ),
                 'loadingimg'       => HTMEGA_ADDONS_PL_URL . 'admin/assets/images/loading.gif',
                 'message'          =>[

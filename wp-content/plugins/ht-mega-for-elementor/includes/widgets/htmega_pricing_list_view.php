@@ -108,7 +108,7 @@ class HTMega_Elementor_Widget_Pricing_List_View extends Widget_Base {
                 'pricing_list',
                 [
                     'type'    => Controls_Manager::REPEATER,
-                    'fields'  => array_values( $repeater_two->get_controls() ),
+                    'fields'  => $repeater_two->get_controls(),
                     'default' => [
                         [
                             'list_name' => __( 'WordPress Plugin', 'htmega-addons' ),
@@ -167,7 +167,7 @@ class HTMega_Elementor_Widget_Pricing_List_View extends Widget_Base {
                 'header_column_list',
                 [
                     'type'    => Controls_Manager::REPEATER,
-                    'fields'  => array_values( $repeater->get_controls() ),
+                    'fields'  => $repeater->get_controls(),
                     'default' => [
                         [
                             'column_name' => __( 'No', 'htmega-addons' ),
@@ -305,7 +305,7 @@ class HTMega_Elementor_Widget_Pricing_List_View extends Widget_Base {
                 'content_list',
                 [
                     'type'    => Controls_Manager::REPEATER,
-                    'fields'  => array_values( $repeater_one->get_controls() ),
+                    'fields'  => $repeater_one->get_controls(),
                     'default' => [
                         [
                             'field_type' => __( 'row', 'htmega-addons' ),

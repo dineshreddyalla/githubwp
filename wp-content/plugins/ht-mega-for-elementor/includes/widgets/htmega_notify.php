@@ -313,10 +313,6 @@ class HTMega_Elementor_Widget_Notify extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
-                            'scheme' => [
-                                'type' => Scheme_Color::get_type(),
-                                'value' => Scheme_Color::COLOR_1,
-                            ],
                             'default' =>'#ffffff',
                             'selectors' => [
                                 '{{WRAPPER}} button.htmega-notify-button' => 'color: {{VALUE}}',
@@ -414,10 +410,6 @@ class HTMega_Elementor_Widget_Notify extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
-                            'scheme' => [
-                                'type' => Scheme_Color::get_type(),
-                                'value' => Scheme_Color::COLOR_1,
-                            ],
                             'default' =>'#ffffff',
                             'selectors' => [
                                 '{{WRAPPER}} button.htmega-notify-button:hover' => 'color: {{VALUE}}',
@@ -473,10 +465,6 @@ class HTMega_Elementor_Widget_Notify extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
-                            'scheme' => [
-                                'type' => Scheme_Color::get_type(),
-                                'value' => Scheme_Color::COLOR_1,
-                            ],
                             'default' =>'#ffffff',
                             'selectors' => [
                                 '.htmega-alert-wrap-{{ID}}.alert strong' => 'color: {{VALUE}} !important',
@@ -583,10 +571,6 @@ class HTMega_Elementor_Widget_Notify extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
-                            'scheme' => [
-                                'type' => Scheme_Color::get_type(),
-                                'value' => Scheme_Color::COLOR_1,
-                            ],
                             'default' =>'#ffffff',
                             'selectors' => [
                                 '.htmega-alert-wrap-{{ID}}.alert span.htmega-close' => 'color: {{VALUE}} !important',

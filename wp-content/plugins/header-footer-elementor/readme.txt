@@ -4,8 +4,8 @@ Tags: elementor, header footer builder, header template, footer template, elemen
 Donate link: https://www.paypal.me/BrainstormForce
 Requires at least: 4.4
 Requires PHP: 5.4
-Tested up to: 5.4
-Stable tag: 1.5.0
+Tested up to: 5.7
+Stable tag: 1.5.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ Create Header, Footer and Blocks for your WordPress website using Elementor Page
 
 ## Description ##
 
-Have you ever imagined you could create your website header and footer with <a href="https://elementor.com/?ref=1352">Elementor</a> for FREE?
+Have you ever imagined you could create your website header and footer with <a href="https://elementor.com/">Elementor</a> for FREE?
 
 Elementor -  Header, Footer & Blocks Template is a simple yet powerful WordPress plugin that allows you to create a layout with Elementor and set it as 
 - Header 
@@ -74,15 +74,15 @@ Step 4 - Edit it with Elementor and design a section.
 
 Step 5 - Save it and you are done!
 
-You can refer to our step-by-step article that will help you [set Elementor headers and footers](https://uaelementor.com/header-footer-with-elementor/?utm_source=wp-repo&utm_campaign=header-footer-elementor&utm_medium=description) quickly.
+You can refer to our step-by-step article that will help you [set Elementor headers and footers](https://ultimateelementor.com/header-footer-with-elementor/?utm_source=wp-repo&utm_campaign=header-footer-elementor&utm_medium=description) quickly.
 
 = LOOKING FOR PREMIUM ELEMENTOR ADDONS AND WIDGETS? =
 
-Check [Ultimate Addons for Elementor](https://uaelementor.com/?utm_source=wp-repo&utm_campaign=header-footer-elementor&utm_medium=description). It is a library of creative and unique Elementor widgets that add more functionality and flexibility to your favorite page builder.
+Check [Ultimate Addons for Elementor](https://ultimateelementor.com/?utm_source=wp-repo&utm_campaign=header-footer-elementor&utm_medium=description). It is a library of creative and unique Elementor widgets that add more functionality and flexibility to your favorite page builder.
 
 = HAVE YOU TRIED ASTRA WITH ELEMENTOR? =
 
-Powering over 800,000+ WordPress websites, Astra is loved for the performance and ease-of-use it offers.
+Powering over 1M+ WordPress websites, Astra is loved for the performance and ease-of-use it offers.
 
 People love Astra for -
 
@@ -137,6 +137,45 @@ This same applies when you are creating your Header/Footer using this plugin.
 5. Default widgets available with Elementor – Header, Footer & Blocks.
 
 == Changelog ==
+= 1.5.7 =
+- Improvement: Compatibility with Elementor v3.1.
+- Fix: Navigation Menu - Undefined index notice when menu is not set.
+
+= 1.5.6 =
+- Fix: Buttons showing cart subtotal.
+
+= 1.5.5 =
+- Improvement: Compatibility with Elementor v3.1.
+- Improvement: Cart - Added Items Count hover color options.
+- Fix: jQuery shorthand deprecation warning for click() and focus() functions.
+- Fix: Cart - Fixed fatal error due to cart initialization.
+
+= 1.5.4 =
+- Improvement: Compatibility to PHP v8.0.
+- Improvement: Improved compatibility with Astra theme.
+- Improvement: Navigation Menu - Added option to toggle menu item.
+- Fix: Added 'alt' attribute to the widgets containing images.
+- Fix: Closed the missing HTML tag in footer in the global theme compatibility.
+- Fix: Navigation Menu - Alignment option not working for the last menu item set as 'Button'.
+
+= 1.5.3 =
+- Fix: Polylang plugin conflicting issue with target rules.
+- Fix: Navigation Menu - Double link attributes issue with translation plugins.
+
+= 1.5.2 =
+- Improvement: Compatibility with Polylang.
+- Improvement: Navigation Menu - Added 'SiteNavigationElement' schema support.
+- Improvement: Navigation Menu - Added support to SVG for toggle and close icon.
+- Improvement: Navigation Menu - Added active color support to the link hover effects.
+- Improvement: Page Title - Added option to disable the link.
+- Fix: Exclude EHF templates from query for target rules - Specific Pages / Posts / taxonomies etc.
+- Fix: Cart - Missing wrapper class in the control selector.
+- Fix: Navigation Menu - Added responsive support to flyout box width.
+
+= 1.5.1 =
+- Fix: Retained GeneratePress theme's after header while using EHF header.
+- Fix: Target rule 'Specific Pages/Posts/Taxonomies etc' not working.
+- Fix: Cart - Error in some cases.
 
 = 1.5.0 =
 - New: Search widget.

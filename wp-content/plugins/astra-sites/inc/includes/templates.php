@@ -14,7 +14,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
+$suggestion_link = astra_sites_get_suggestion_link();
 ?>
 
 <script type="text/template" id="tmpl-ast-template-base-skeleton">
@@ -109,12 +109,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php
 				}
 				?>
-				<div class="back-to-layout" title="<?php esc_html_e( 'Back to Layout', 'astra-sites' ); ?>" data-step="1"><i class="icon-chevron-left"></i></div>
+				<div class="back-to-layout" title="<?php esc_html_e( 'Back to Layout', 'astra-sites' ); ?>" data-step="1"><i class="ast-icon-chevron-left"></i></div>
 			</div>
 			<div class="elementor-templates-modal__header__menu-area astra-sites-step-1-wrap ast-sites-modal__options">
 				<div class="elementor-template-library-header-menu">
-					<div class="elementor-template-library-menu-item elementor-active" data-template-source="remote" data-template-type="pages"><span class="icon-file"></span><?php esc_html_e( 'Pages', 'astra-sites' ); ?></div>		
-					<div class="elementor-template-library-menu-item" data-template-source="remote" data-template-type="blocks"><span class="icon-layers"></span><?php esc_html_e( 'Blocks', 'astra-sites' ); ?></div>
+					<div class="elementor-template-library-menu-item elementor-active" data-template-source="remote" data-template-type="pages"><span class="ast-icon-file"></span><?php esc_html_e( 'Pages', 'astra-sites' ); ?></div>		
+					<div class="elementor-template-library-menu-item" data-template-source="remote" data-template-type="blocks"><span class="ast-icon-layers"></span><?php esc_html_e( 'Blocks', 'astra-sites' ); ?></div>
 				</div>
 			</div>
 			<div class="elementor-templates-modal__header__items-area">
@@ -124,7 +124,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</div>
 				<div class="astra-sites__sync-wrap">
 					<div class="astra-sites-sync-library-button">
-						<span class="icon-refresh" aria-hidden="true" title="<?php esc_html_e( 'Sync Library', 'astra-sites' ); ?>"></span>
+						<span class="ast-icon-refresh" aria-hidden="true" title="<?php esc_html_e( 'Sync Library', 'astra-sites' ); ?>"></span>
 					</div>
 				</div>
 			</div>
@@ -211,7 +211,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="astra-sites-library-template astra-theme" data-block-id={{key}}>
 			<div class="astra-sites-library-template-inner" >
 				<div class="elementor-template-library-template-body theme-screenshot" data-step="1">
-					<img src="{{data[ key ]['featured-image-url']}}">
+					<img src="{{data[ key ]['thumbnail-image-url']}}">
 					<div class="elementor-template-library-template-preview">
 						<i class="eicon-zoom-in" aria-hidden="true"></i>
 					</div>
@@ -236,9 +236,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<div class="description">
 						<p>
 						<?php
-						$s_url = Astra_Sites_White_Label::get_option( 'astra-agency', 'licence' );
 						/* translators: %1$s External Link */
-						printf( __( 'Don\'t see a template you would like to import?<br><a target="_blank" href="%1$s">Make a Template Suggestion!</a>', 'astra-sites' ), esc_url( $s_url ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						printf( __( 'Don\'t see a template you would like to import?<br><a target="_blank" href="%1$s">Make a Template Suggestion!</a>', 'astra-sites' ), esc_url( $suggestion_link ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 						</p>
 						<div class="back-to-layout-button"><span class="button astra-sites-back"><?php esc_html_e( 'Back to Templates', 'astra-sites' ); ?></span></div>
@@ -320,9 +319,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<div class="description">
 						<p>
 						<?php
-						$s_url = Astra_Sites_White_Label::get_option( 'astra-agency', 'licence' );
 						/* translators: %1$s External Link */
-						printf( __( 'Don\'t see a template you would like to import?<br><a target="_blank" href="%1$s">Make a Template Suggestion!</a>', 'astra-sites' ), esc_url( $s_url ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						printf( __( 'Don\'t see a template you would like to import?<br><a target="_blank" href="%1$s">Make a Template Suggestion!</a>', 'astra-sites' ), esc_url( $suggestion_link ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 						</p>
 						<div class="back-to-layout-button"><span class="button astra-sites-back"><?php esc_html_e( 'Back to Templates', 'astra-sites' ); ?></span></div>
@@ -407,9 +405,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<div class="description">
 						<p>
 						<?php
-						$s_url = Astra_Sites_White_Label::get_option( 'astra-agency', 'licence' );
 						/* translators: %1$s External Link */
-						printf( __( 'Don\'t see a template you would like to import?<br><a target="_blank" href="%1$s">Make a Template Suggestion!</a>', 'astra-sites' ), esc_url( $s_url ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						printf( __( 'Don\'t see a template you would like to import?<br><a target="_blank" href="%1$s">Make a Template Suggestion!</a>', 'astra-sites' ), esc_url( $suggestion_link ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 						</p>
 						<div class="back-to-layout-button"><span class="button astra-sites-back"><?php esc_html_e( 'Back to Templates', 'astra-sites' ); ?></span></div>
@@ -469,9 +466,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="description">
 					<p>
 					<?php
-					$s_url = Astra_Sites_White_Label::get_option( 'astra-agency', 'licence' );
 					/* translators: %1$s External Link */
-					printf( __( 'Don\'t see a template you would like to import?<br><a target="_blank" href="%1$s">Make a Template Suggestion!</a>', 'astra-sites' ), esc_url( $s_url ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					printf( __( 'Don\'t see a template you would like to import?<br><a target="_blank" href="%1$s">Make a Template Suggestion!</a>', 'astra-sites' ), esc_url( $suggestion_link ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					?>
 					</p>
 					<div class="back-to-layout-button"><span class="button astra-sites-back"><?php esc_html_e( 'Back to Templates', 'astra-sites' ); ?></span></div>

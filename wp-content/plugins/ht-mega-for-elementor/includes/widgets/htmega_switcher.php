@@ -212,10 +212,6 @@ class HTMega_Elementor_Widget_Switcher extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
-                    'scheme' => [
-                        'type' => Scheme_Color::get_type(),
-                        'value' => Scheme_Color::COLOR_1,
-                    ],
                     'default' => '#000000',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-switcher-area .htmega_switcher_content' => 'color: {{VALUE}};',
@@ -344,10 +340,6 @@ class HTMega_Elementor_Widget_Switcher extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
-                            'scheme' => [
-                                'type' => Scheme_Color::get_type(),
-                                'value' => Scheme_Color::COLOR_1,
-                            ],
                             'default' => '#444444',
                             'selectors' => [
                                 '{{WRAPPER}} .htmega-switcher-nav a' => 'color: {{VALUE}};',
@@ -432,10 +424,6 @@ class HTMega_Elementor_Widget_Switcher extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
-                            'scheme' => [
-                                'type' => Scheme_Color::get_type(),
-                                'value' => Scheme_Color::COLOR_1,
-                            ],
                             'default' => '#ffffff',
                             'selectors' => [
                                 '{{WRAPPER}} .htmega-switcher-nav a.htb-active' => 'color: {{VALUE}};',

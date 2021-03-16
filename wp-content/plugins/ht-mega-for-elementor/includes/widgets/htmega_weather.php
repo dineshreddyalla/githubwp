@@ -130,10 +130,6 @@ class HTMega_Elementor_Widget_Weather extends Widget_Base {
                 [
                     'label' => __( 'Custom Background Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
-                    'scheme' => [
-                        'type' => Scheme_Color::get_type(),
-                        'value' => Scheme_Color::COLOR_1,
-                    ]
                 ]
             );
 
@@ -142,10 +138,6 @@ class HTMega_Elementor_Widget_Weather extends Widget_Base {
                 [
                     'label' => __( 'Text Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
-                    'scheme' => [
-                        'type' => Scheme_Color::get_type(),
-                        'value' => Scheme_Color::COLOR_1,
-                    ]
                 ]
             );
             

@@ -121,10 +121,6 @@ class HTMega_Elementor_Widget_Toggle extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
-                    'scheme' => [
-                        'type' => Scheme_Color::get_type(),
-                        'value' => Scheme_Color::COLOR_1,
-                    ],
                     'default'=>'#444444',
                     'selectors' => [
                         '{{WRAPPER}} .htmega_custom_content' => 'color: {{VALUE}};',
@@ -141,7 +137,7 @@ class HTMega_Elementor_Widget_Toggle extends Widget_Base {
                 [
                     'name' => 'custom_content_typography',
                     'scheme' => Scheme_Typography::TYPOGRAPHY_1,
-                    'selector' => '{{WRAPPER}} .htmega_custom_content, {{WRAPPER}} .htmega_custom_content *',
+                    'selector' => '{{WRAPPER}} .htmega_custom_content',
                     'condition' => [
                         'content_source' =>'custom',
                     ],
@@ -229,10 +225,6 @@ class HTMega_Elementor_Widget_Toggle extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
-                            'scheme' => [
-                                'type' => Scheme_Color::get_type(),
-                                'value' => Scheme_Color::COLOR_1,
-                            ],
                             'default'=>'#3b3b3b',
                             'selectors' => [
                                 '{{WRAPPER}} .htmega-toggle-button a' => 'color: {{VALUE}};',
@@ -319,10 +311,6 @@ class HTMega_Elementor_Widget_Toggle extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
-                            'scheme' => [
-                                'type' => Scheme_Color::get_type(),
-                                'value' => Scheme_Color::COLOR_1,
-                            ],
                             'default'=>'#3b3b3b',
                             'selectors' => [
                                 '{{WRAPPER}} .htmega-toggle-button a:hover' => 'color: {{VALUE}};',

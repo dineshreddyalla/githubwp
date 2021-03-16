@@ -96,7 +96,18 @@ class Retina extends Widget_Base {
 	 * @since 1.2.0
 	 * @access protected
 	 */
-	protected function _register_controls() {
+	protected function _register_controls() { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
+
+		$this->register_controls();
+	}
+
+	/**
+	 * Register Retina Logo controls.
+	 *
+	 * @since 1.5.7
+	 * @access protected
+	 */
+	protected function register_controls() {
 		$this->register_content_retina_image_controls();
 		$this->register_retina_image_styling_controls();
 		$this->register_retina_caption_styling_controls();
@@ -609,6 +620,9 @@ class Retina extends Widget_Base {
 	 * @access protected
 	 */
 	protected function register_helpful_information() {
+
+			$help_link_1 = HFE_DOMAIN . 'docs/introducing-retina-image-widget';
+
 			$this->start_controls_section(
 				'section_helpful_info',
 				[
@@ -621,7 +635,7 @@ class Retina extends Widget_Base {
 				[
 					'type'            => Controls_Manager::RAW_HTML,
 					/* translators: %1$s doc link */
-					'raw'             => sprintf( __( '%1$s Getting started article » %2$s', 'header-footer-elementor' ), '<a href="https://uaelementor.com/docs/introducing-retina-image-widget/" target="_blank" rel="noopener">', '</a>' ),
+					'raw'             => sprintf( __( '%1$s Getting started article » %2$s', 'header-footer-elementor' ), '<a href=' . $help_link_1 . 'docs/introducing-retina-image-widget/" target="_blank" rel="noopener">', '</a>' ),
 					'content_classes' => 'hfe-editor-doc',
 				]
 			);
@@ -795,7 +809,7 @@ class Retina extends Widget_Base {
 			?>
 				<div class="hfe-retina-image-set">
 					<div class="hfe-retina-image-container">
-						<img class="hfe-retina-img <?php echo $class_animation; ?>"  src="<?php echo $image_url; ?>" srcset="<?php echo $image_url . ' 1x' . ',' . $retina_image_url . ' 2x'; ?>"/>
+						<img class="hfe-retina-img <?php echo $class_animation; ?>"  src="<?php echo $image_url; ?>" alt="<?php echo esc_attr( Control_Media::get_image_alt( $settings['retina_image'] ) ); ?>" srcset="<?php echo $image_url . ' 1x' . ',' . $retina_image_url . ' 2x'; ?>"/>
 					</div>
 				</div>
 			<?php if ( $link ) : ?>

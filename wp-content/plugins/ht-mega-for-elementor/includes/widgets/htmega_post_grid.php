@@ -212,10 +212,6 @@ class HTMega_Elementor_Widget_PostGrid extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
-                    'scheme' => [
-                        'type' => Scheme_Color::get_type(),
-                        'value' => Scheme_Color::COLOR_1,
-                    ],
                     'default'=>'#ffffff',
                     'selectors' => [
                         '{{WRAPPER}} .ht-post .post-content .content h2 a' => 'color: {{VALUE}}',
@@ -309,10 +305,6 @@ class HTMega_Elementor_Widget_PostGrid extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
-                    'scheme' => [
-                        'type' => Scheme_Color::get_type(),
-                        'value' => Scheme_Color::COLOR_1,
-                    ],
                     'default'=>'#ffffff',
                     'selectors' => [
                         '{{WRAPPER}} .ht-post .post-content .content .meta' => 'color: {{VALUE}}',
@@ -402,10 +394,6 @@ class HTMega_Elementor_Widget_PostGrid extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
-                    'scheme' => [
-                        'type' => Scheme_Color::get_type(),
-                        'value' => Scheme_Color::COLOR_1,
-                    ],
                     'default'=>'#ffffff',
                     'selectors' => [
                         '{{WRAPPER}} .ht-post a.post-category' => 'color: {{VALUE}}',
