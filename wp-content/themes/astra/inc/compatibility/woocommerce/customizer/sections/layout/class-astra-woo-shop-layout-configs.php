@@ -36,19 +36,18 @@ if ( ! class_exists( 'Astra_Woo_Shop_Layout_Configs' ) ) {
 				 * Option: Shop Columns
 				 */
 				array(
-					'name'              => ASTRA_THEME_SETTINGS . '[shop-grids]',
-					'type'              => 'control',
-					'control'           => 'ast-responsive-slider',
-					'sanitize_callback' => array( 'Astra_Customizer_Sanitizes', 'sanitize_responsive_slider' ),
-					'section'           => 'woocommerce_product_catalog',
-					'default'           => array(
+					'name'        => ASTRA_THEME_SETTINGS . '[shop-grids]',
+					'type'        => 'control',
+					'control'     => 'ast-responsive-slider',
+					'section'     => 'woocommerce_product_catalog',
+					'default'     => array(
 						'desktop' => 4,
 						'tablet'  => 3,
 						'mobile'  => 2,
 					),
-					'priority'          => 11,
-					'title'             => __( 'Shop Columns', 'astra' ),
-					'input_attrs'       => array(
+					'priority'    => 11,
+					'title'       => __( 'Shop Columns', 'astra' ),
+					'input_attrs' => array(
 						'step' => 1,
 						'min'  => 1,
 						'max'  => 6,
@@ -77,15 +76,14 @@ if ( ! class_exists( 'Astra_Woo_Shop_Layout_Configs' ) ) {
 				 * Option: Single Post Meta
 				 */
 				array(
-					'name'              => ASTRA_THEME_SETTINGS . '[shop-product-structure]',
-					'type'              => 'control',
-					'control'           => 'ast-sortable',
-					'sanitize_callback' => array( 'Astra_Customizer_Sanitizes', 'sanitize_multi_choices' ),
-					'section'           => 'woocommerce_product_catalog',
-					'default'           => astra_get_option( 'shop-product-structure' ),
-					'priority'          => 15,
-					'title'             => __( 'Shop Product Structure', 'astra' ),
-					'choices'           => array(
+					'name'     => ASTRA_THEME_SETTINGS . '[shop-product-structure]',
+					'type'     => 'control',
+					'control'  => 'ast-sortable',
+					'section'  => 'woocommerce_product_catalog',
+					'default'  => astra_get_option( 'shop-product-structure' ),
+					'priority' => 15,
+					'title'    => __( 'Shop Product Structure', 'astra' ),
+					'choices'  => array(
 						'title'      => __( 'Title', 'astra' ),
 						'price'      => __( 'Price', 'astra' ),
 						'ratings'    => __( 'Ratings', 'astra' ),
@@ -120,36 +118,17 @@ if ( ! class_exists( 'Astra_Woo_Shop_Layout_Configs' ) ) {
 					'type'        => 'control',
 					'control'     => 'ast-slider',
 					'section'     => 'woocommerce_product_catalog',
-					'default'     => astra_get_option( 'shop-archive-max-width' ),
+					'default'     => 1200,
 					'priority'    => 10,
+					'required'    => array( ASTRA_THEME_SETTINGS . '[shop-archive-width]', '===', 'custom' ),
 					'title'       => __( 'Custom Width', 'astra' ),
 					'transport'   => 'postMessage',
-					'suffix'      => 'px',
+					'suffix'      => '',
 					'input_attrs' => array(
 						'min'  => 768,
 						'step' => 1,
 						'max'  => 1920,
 					),
-					'context'     => array(
-						Astra_Builder_Helper::$general_tab_config,
-						array(
-							'setting'  => ASTRA_THEME_SETTINGS . '[shop-archive-width]',
-							'operator' => '===',
-							'value'    => 'custom',
-						),
-					),
-				),
-
-				/**
-				 * Option: Divider
-				 */
-				array(
-					'name'     => ASTRA_THEME_SETTINGS . '[shop-archive-layout-divider]',
-					'type'     => 'control',
-					'section'  => 'woocommerce_product_catalog',
-					'control'  => 'ast-divider',
-					'priority' => 10,
-					'settings' => array(),
 				),
 			);
 

@@ -38,6 +38,7 @@ class HTMega_Elementor_Widget_Button extends Widget_Base {
                     'options' => [
                         '1'   => __( 'Style One', 'htmega-addons' ),
                         '2'   => __( 'Style Two', 'htmega-addons' ),
+                        '3'   => __( 'Style Three', 'htmega-addons' ),
                     ],
                 ]
             );
@@ -66,6 +67,25 @@ class HTMega_Elementor_Widget_Button extends Widget_Base {
                         'url' => '#',
                     ],
                     'separator' => 'before',
+                ]
+            );
+
+            $this->add_control(
+                'button_type',
+                [
+                    'label'   => __( 'Button Type', 'htmega-addons' ),
+                    'type'    => Controls_Manager::SELECT,
+                    'default' => 'primary',
+                    'options' => [
+                        'primary'   => __( 'Primary', 'htmega-addons' ),
+                        'secondary' => __( 'Secondary', 'htmega-addons' ),
+                        'success'   => __( 'Success', 'htmega-addons' ),
+                        'danger'    => __( 'Danger', 'htmega-addons' ),
+                        'warning'   => __( 'Warning', 'htmega-addons' ),
+                        'info'      => __( 'Info', 'htmega-addons' ),
+                        'light'     => __( 'Light', 'htmega-addons' ),
+                        'dark'      => __( 'Dark', 'htmega-addons' ),
+                    ],
                 ]
             );
 
@@ -192,7 +212,6 @@ class HTMega_Elementor_Widget_Button extends Widget_Base {
                         [
                             'label'     => __( 'Text Color', 'htmega-addons' ),
                             'type'      => Controls_Manager::COLOR,
-                            'default'   => '#ffffff',
                             'selectors' => [
                                 '{{WRAPPER}} .htmega-button .htb-btn' => 'color: {{VALUE}};',
                             ],
@@ -224,7 +243,7 @@ class HTMega_Elementor_Widget_Button extends Widget_Base {
                             'label' => __( 'Border Radius', 'htmega-addons' ),
                             'type' => Controls_Manager::DIMENSIONS,
                             'selectors' => [
-                                '{{WRAPPER}} .htmega-button .htb-btn, {{WRAPPER}} .htmega-button .htb-btn::before' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
+                                '{{WRAPPER}} .htmega-button .htb-btn' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
                             ],
                         ]
                     );
@@ -235,43 +254,8 @@ class HTMega_Elementor_Widget_Button extends Widget_Base {
                             'name' => 'button_background',
                             'label' => __( 'Background', 'htmega-addons' ),
                             'types' => [ 'classic', 'gradient' ],
-                            'fields_options'=>[
-                                'background'=>[
-                                    'default'=>'classic',
-                                ],
-                                'color'=>[
-                                    'default'=>'#000000',
-                                ],
-                            ],
                             'selector' => '{{WRAPPER}} .htmega-button .htb-btn',
                             'separator' => 'before',
-                        ]
-                    );
-
-                    $this->add_control(
-                        'button_second_background_heading',
-                        [
-                            'label' => __( 'Second Background', 'htmega-addons' ),
-                            'type' => Controls_Manager::HEADING,
-                            'separator' => 'before'
-                        ]
-                    );
-
-                    $this->add_group_control(
-                        Group_Control_Background::get_type(),
-                        [
-                            'name' => 'button_second_background',
-                            'label' => __( 'Background', 'htmega-addons' ),
-                            'types' => [ 'classic', 'gradient' ],
-                            'fields_options'=>[
-                                'background'=>[
-                                    'default'=>'classic',
-                                ]
-                            ],
-                            'selector' => '{{WRAPPER}} .htmega-btn-style-2 .htb-btn::after',
-                            'condition' => array(
-                                'button_style'  => '2'
-                            )
                         ]
                     );
 
@@ -281,7 +265,6 @@ class HTMega_Elementor_Widget_Button extends Widget_Base {
                             'name' => 'box_shadow',
                             'label' => __( 'Box Shadow', 'htmega-addons' ),
                             'selector' => '{{WRAPPER}} .htmega-button .htb-btn',
-                            'separator' => 'before',
                         ]
                     );
 
@@ -347,7 +330,7 @@ class HTMega_Elementor_Widget_Button extends Widget_Base {
                             'label' => __( 'Border Radius', 'htmega-addons' ),
                             'type' => Controls_Manager::DIMENSIONS,
                             'selectors' => [
-                                '{{WRAPPER}} .htmega-button .htb-btn:hover, {{WRAPPER}} .htmega-button .htb-btn:hover:before' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
+                                '{{WRAPPER}} .htmega-button .htb-btn:hover' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
                             ],
                         ]
                     );
@@ -358,35 +341,8 @@ class HTMega_Elementor_Widget_Button extends Widget_Base {
                             'name' => 'buttonhover_background',
                             'label' => __( 'Background', 'htmega-addons' ),
                             'types' => [ 'classic', 'gradient' ],
-                            'selector' => '{{WRAPPER}} .htmega-button .htb-btn:hover,{{WRAPPER}} .htmega-button .htb-btn:hover:before',
+                            'selector' => '{{WRAPPER}} .htmega-button .htb-btn:hover',
                             'separator' => 'before',
-                        ]
-                    );
-
-                    $this->add_control(
-                        'buttonhover_second_background_heading',
-                        [
-                            'label' => __( 'Second Background', 'htmega-addons' ),
-                            'type' => Controls_Manager::HEADING,
-                            'separator' => 'before'
-                        ]
-                    );
-
-                    $this->add_group_control(
-                        Group_Control_Background::get_type(),
-                        [
-                            'name' => 'buttonhover_second_background',
-                            'label' => __( 'Background', 'htmega-addons' ),
-                            'types' => [ 'classic', 'gradient' ],
-                            'fields_options'=>[
-                                'background'=>[
-                                    'default'=>'classic',
-                                ]
-                            ],
-                            'selector' => '{{WRAPPER}} .htmega-btn-style-2 .htb-btn:hover::after',
-                            'condition' => array(
-                                'button_style'  => '2'
-                            )
                         ]
                     );
 
@@ -620,6 +576,7 @@ class HTMega_Elementor_Widget_Button extends Widget_Base {
             }
 
             $this->add_render_attribute( 'url', 'class', 'htb-btn' );
+            $this->add_render_attribute( 'url', 'class', 'htb-btn-outline-'. $settings['button_type'] );
             $this->add_render_attribute( 'url', 'class', 'htmega-btn-size-'. $settings['button_size'] );
             $this->add_render_attribute( 'url', 'class', 'htmega-btn-effect-'. $settings['button_effect'] );
 

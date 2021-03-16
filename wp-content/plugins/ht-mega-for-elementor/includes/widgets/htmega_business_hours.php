@@ -82,6 +82,10 @@ class HTMega_Elementor_Widget_Business_Hours extends Widget_Base {
                 [
                     'label'     => __( 'Day Color', 'htmega-addons' ),
                     'type'      => Controls_Manager::COLOR,
+                    'scheme'    => [
+                        'type'  => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_2,
+                    ],
                     'default'   => '#fa2d2d',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-single-hrs{{CURRENT_ITEM}}.htmega-single-hrs.closed-day span.day' => 'color: {{VALUE}}',
@@ -98,6 +102,10 @@ class HTMega_Elementor_Widget_Business_Hours extends Widget_Base {
                 [
                     'label'     => __( 'Time Color', 'htmega-addons' ),
                     'type'      => Controls_Manager::COLOR,
+                    'scheme'    => [
+                        'type'  => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_4,
+                    ],
                     'default'   => '#fa2d2d',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-single-hrs{{CURRENT_ITEM}}.htmega-single-hrs.closed-day span.time' => 'color: {{VALUE}}',
@@ -128,7 +136,7 @@ class HTMega_Elementor_Widget_Business_Hours extends Widget_Base {
                 'business_openday_list',
                 [
                     'type'    => Controls_Manager::REPEATER,
-                    'fields'  => $repeater->get_controls(),
+                    'fields'  => array_values( $repeater->get_controls() ),
                     'default' => [
                         [
                             'business_day' => __( 'Saturday', 'htmega-addons' ),
@@ -195,7 +203,7 @@ class HTMega_Elementor_Widget_Business_Hours extends Widget_Base {
                 Group_Control_Box_Shadow::get_type(),
                 [
                     'name' => 'business_item_area_box_shadow',
-                    'label' => __( 'Box Shadow', 'htmega-addons' ),
+                    'label' => __( 'Box Shadow', 'plugin-domain' ),
                     'selector' => '{{WRAPPER}} .htmega-business-hours .business-hrs-inner',
                 ]
             );

@@ -314,9 +314,6 @@ class HTMega_Elementor_Widget_Countdown extends Widget_Base {
                     'selectors'  => [
                         '{{WRAPPER}} span.ht-count' => 'width: {{SIZE}}{{UNIT}};',
                     ],
-                    'condition'   => [
-                        'htmega_count_style' => '1',
-                    ],
                 ]
             );
 
@@ -349,16 +346,13 @@ class HTMega_Elementor_Widget_Countdown extends Widget_Base {
                     'selectors'  => [
                         '{{WRAPPER}} span.ht-count' => 'height: {{SIZE}}{{UNIT}};',
                     ],
-                    'condition'   => [
-                        'htmega_count_style' => '1',
-                    ],
                 ]
             );
 
             $this->add_responsive_control(
                 'count_down_specing',
                 [
-                    'label' => __( 'Column Spacing', 'htmega-addons' ),
+                    'label' => __( 'Column Specing', 'htmega-addons' ),
                     'type' => Controls_Manager::SLIDER,
                     'size_units' => [ 'px', '%' ],
                     'range' => [
@@ -535,6 +529,10 @@ class HTMega_Elementor_Widget_Countdown extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#5e5b60',
                     'condition'=>[
                         'counter_separator' => 'yes',
@@ -561,6 +559,10 @@ class HTMega_Elementor_Widget_Countdown extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#242424',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-countbox span.time-count' => 'color: {{VALUE}};',
@@ -684,6 +686,10 @@ class HTMega_Elementor_Widget_Countdown extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#242424',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-countbox span span.count-inner p' => 'color: {{VALUE}};',

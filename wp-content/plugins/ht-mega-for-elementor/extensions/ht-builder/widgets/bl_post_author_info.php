@@ -225,6 +225,10 @@ class Bl_Post_Author_Info_ELement extends Widget_Base {
                 [
                     'label' => __( 'Color', 'ht-builder' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_2,
+                    ],
                     'selectors' => [
                         '{{WRAPPER}} .htauthor-info .htauthor-name' => 'color: {{VALUE}}',
                     ],
@@ -266,6 +270,10 @@ class Bl_Post_Author_Info_ELement extends Widget_Base {
                 [
                     'label' => __( 'Color', 'ht-builder' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_2,
+                    ],
                     'selectors' => [
                         '{{WRAPPER}} .htauthor-info .htbuilder-bio' => 'color: {{VALUE}}',
                     ],

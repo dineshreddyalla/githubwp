@@ -25,7 +25,7 @@ class WPForms_Template_Blank extends WPForms_Template {
 			'field_id' => '1',
 			'fields'   => array(),
 			'settings' => array(
-				'antispam'                    => '1',
+				'honeypot'                    => '1',
 				'confirmation_message_scroll' => '1',
 				'submit_text_processing'      => esc_html__( 'Sending...', 'wpforms-lite' ),
 			),

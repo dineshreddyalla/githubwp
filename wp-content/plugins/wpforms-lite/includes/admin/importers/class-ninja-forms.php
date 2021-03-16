@@ -118,7 +118,7 @@ class WPForms_Ninja_Forms extends WPForms_Importer {
 				'form_desc'              => '',
 				'submit_text'            => esc_html__( 'Submit', 'wpforms-lite' ),
 				'submit_text_processing' => esc_html__( 'Sending', 'wpforms-lite' ),
-				'antispam'               => '1',
+				'honeypot'               => '1',
 				'notification_enable'    => '1',
 				'notifications'          => array(
 					1 => array(

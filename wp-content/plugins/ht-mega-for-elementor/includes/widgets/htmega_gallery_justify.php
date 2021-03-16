@@ -53,7 +53,7 @@ class HTMega_Elementor_Widget_Gallery_Justify extends Widget_Base {
             $this->add_control(
                 'row_height',
                 [
-                    'label' => __( 'Row Height', 'htmega-addons' ),
+                    'label' => __( 'Row Height', 'plugin-domain' ),
                     'type' => Controls_Manager::NUMBER,
                     'default' => 300,
                 ]
@@ -62,7 +62,7 @@ class HTMega_Elementor_Widget_Gallery_Justify extends Widget_Base {
             $this->add_control(
                 'space_margin',
                 [
-                    'label' => __( 'Space', 'htmega-addons' ),
+                    'label' => __( 'Space', 'plugin-domain' ),
                     'type' => Controls_Manager::NUMBER,
                     'default' => 20,
                 ]

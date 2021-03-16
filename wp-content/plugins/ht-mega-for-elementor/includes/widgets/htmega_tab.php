@@ -224,7 +224,7 @@ class HTMega_Elementor_Widget_Tabs extends Widget_Base {
                 'htmega_tabs_list',
                 [
                     'type'    => Controls_Manager::REPEATER,
-                    'fields'  => $repeater->get_controls(),
+                    'fields'  => array_values( $repeater->get_controls() ),
                     'default' => [
                         [
                             'tab_title' => esc_html__( 'Title #1', 'htmega-addons' ),

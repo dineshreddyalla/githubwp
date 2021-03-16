@@ -16,10 +16,6 @@ class AdminBarMenu {
 	 */
 	public function init() {
 
-		if ( ! $this->has_access() ) {
-			return;
-		}
-
 		$this->hooks();
 	}
 
@@ -30,16 +26,15 @@ class AdminBarMenu {
 	 */
 	public function hooks() {
 
-		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_css' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_css' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_js' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueues' ] );
+
+		add_action( 'admin_enqueue_scripts', [ $this, 'enqueues' ] );
 
 		add_action( 'admin_bar_menu', [ $this, 'register' ], 999 );
-		add_action( 'wpforms_wp_footer_end', [ $this, 'menu_forms_data_html' ] );
 	}
 
 	/**
-	 * Determine whether the current user has access to see admin bar menu.
+	 * Check if current user has access to see admin bar menu.
 	 *
 	 * @since 1.6.0
 	 *
@@ -50,18 +45,18 @@ class AdminBarMenu {
 		$access = false;
 
 		if (
-			is_admin_bar_showing() &&
+			is_user_logged_in() &&
 			wpforms_current_user_can() &&
 			! wpforms_setting( 'hide-admin-bar', false )
 		) {
 			$access = true;
 		}
 
-		return (bool) apply_filters( 'wpforms_admin_adminbarmenu_has_access', $access );
+		return apply_filters( 'wpforms_admin_adminbarmenu_has_access', $access );
 	}
 
 	/**
-	 * Determine whether new notifications are available.
+	 * Check if new notifications are available.
 	 *
 	 * @since 1.6.0
 	 *
@@ -73,11 +68,15 @@ class AdminBarMenu {
 	}
 
 	/**
-	 * Enqueue CSS styles.
+	 * Enqueue styles.
 	 *
 	 * @since 1.6.0
 	 */
-	public function enqueue_css() {
+	public function enqueues() {
+
+		if ( ! $this->has_access() ) {
+			return;
+		}
 
 		$min = wpforms_get_min_suffix();
 
@@ -90,41 +89,7 @@ class AdminBarMenu {
 	}
 
 	/**
-	 * Enqueue JavaScript files.
-	 *
-	 * @since 1.6.5
-	 */
-	public function enqueue_js() {
-
-		// In WordPress 5.3.1 the `admin-bar.js` file was rewritten and removed all jQuery dependencies.
-		$is_wp_531_plus = version_compare( get_bloginfo( 'version' ), '5.3.1', '>=' );
-		$inline_script  = sprintf(
-			"( function() {
-				function wpforms_admin_bar_menu_init() {
-					var template = document.getElementById( 'tmpl-wpforms-admin-menubar-data' ),
-						notifications = document.getElementById( 'wp-admin-bar-wpforms-notifications' );
-
-					if ( ! template ) {
-						return;
-					}
-
-					if ( ! notifications ) {
-						var menu = document.getElementById( 'wp-admin-bar-wpforms-menu-default' );
-						menu.insertAdjacentHTML( 'afterBegin', template.innerHTML );
-					} else {
-						notifications.insertAdjacentHTML( 'afterend', template.innerHTML );
-					}
-				};
-				%s
-			}() );",
-			$is_wp_531_plus ? "document.addEventListener( 'DOMContentLoaded', wpforms_admin_bar_menu_init );" : "if ( typeof( jQuery ) != 'undefined' ) { jQuery( wpforms_admin_bar_menu_init ); } else { document.addEventListener( 'DOMContentLoaded', wpforms_admin_bar_menu_init ); }"
-		);
-
-		wp_add_inline_script( 'admin-bar', $inline_script, 'before' );
-	}
-
-	/**
-	 * Register and render admin bar menu items.
+	 * Register and render admin menu bar items.
 	 *
 	 * @since 1.6.0
 	 *
@@ -132,11 +97,16 @@ class AdminBarMenu {
 	 */
 	public function register( \WP_Admin_Bar $wp_admin_bar ) {
 
-		$items = (array) apply_filters(
+		if ( ! $this->has_access() ) {
+			return;
+		}
+
+		$items = apply_filters(
 			'wpforms_admin_adminbarmenu_register',
 			[
 				'main_menu',
 				'notification_menu',
+				'forms_menu',
 				'all_forms_menu',
 				'add_new_menu',
 				'community_menu',
@@ -154,7 +124,7 @@ class AdminBarMenu {
 	}
 
 	/**
-	 * Render primary top-level admin bar menu item.
+	 * Render primary top-level admin menu bar item.
 	 *
 	 * @since 1.6.0
 	 *
@@ -162,11 +132,10 @@ class AdminBarMenu {
 	 */
 	public function main_menu( \WP_Admin_Bar $wp_admin_bar ) {
 
-		$indicator     = '';
-		$notifications = $this->has_notifications();
+		$indicator = '';
 
-		if ( $notifications ) {
-			$count     = $notifications < 10 ? $notifications : '!';
+		if ( $this->has_notifications() ) {
+			$count     = $this->has_notifications() < 10 ? $this->has_notifications() : '!';
 			$indicator = ' <div class="wpforms-menu-notification-counter"><span>' . $count . '</span></div>';
 		}
 
@@ -180,7 +149,7 @@ class AdminBarMenu {
 	}
 
 	/**
-	 * Render Notifications admin bar menu item.
+	 * Render Notifications admin menu bar item.
 	 *
 	 * @since 1.6.0
 	 *
@@ -196,14 +165,79 @@ class AdminBarMenu {
 			[
 				'parent' => 'wpforms-menu',
 				'id'     => 'wpforms-notifications',
-				'title'  => esc_html__( 'Notifications', 'wpforms-lite' ) . ' <div class="wpforms-menu-notification-indicator"></div>',
+				'title'  => __( 'Notifications', 'wpforms-lite' ) . ' <div class="wpforms-menu-notification-indicator"></div>',
 				'href'   => admin_url( 'admin.php?page=wpforms-overview' ),
 			]
 		);
 	}
 
 	/**
-	 * Render All Forms admin bar menu item.
+	 * Render individual forms admin menu bar items and sub-items.
+	 *
+	 * @since 1.6.0
+	 *
+	 * @param \WP_Admin_Bar $wp_admin_bar WordPress Admin Bar object.
+	 */
+	public function forms_menu( \WP_Admin_Bar $wp_admin_bar ) {
+
+		if ( is_admin() ) {
+			return;
+		}
+
+		$forms = wpforms()->frontend->forms;
+		$x     = 0;
+
+		if ( empty( $forms ) ) {
+			return;
+		}
+
+		foreach ( $forms as $form ) {
+
+			$x++;
+
+			$form_id                = absint( $form['id'] );
+			$class                  = 'wpforms-menu-form';
+			$this->displaying_forms = true;
+
+			if ( $this->has_notifications() && $x === 1 ) {
+				$class .= ' wpforms-menu-form-notifications';
+			}
+
+			if ( $x === count( $forms ) ) {
+				$class .= ' wpforms-menu-form-last';
+			}
+
+			// Shrink the long form title.
+			$form_title = sanitize_text_field( $form['settings']['form_title'] );
+			$form_title = mb_strlen( $form_title ) > 99 ? mb_substr( $form_title, 0, 99 ) . '&hellip;' : $form_title;
+
+			$wp_admin_bar->add_menu(
+				[
+					'parent' => 'wpforms-menu',
+					'id'     => 'wpforms-form-id-' . $form_id,
+					'title'  => $form_title,
+					'href'   => '#wpforms-' . $form_id,
+					'meta'   => [
+						'class' => $class,
+					],
+				]
+			);
+
+			$wp_admin_bar->add_menu(
+				[
+					'parent' => 'wpforms-form-id-' . $form_id,
+					'id'     => 'wpforms-edit-form-id-' . $form_id,
+					'title'  => __( 'Edit Form', 'wpforms-lite' ),
+					'href'   => admin_url( 'admin.php?page=wpforms-builder&view=fields&form_id=' . $form_id ),
+				]
+			);
+
+			do_action( 'wpforms_admin_adminbarmenu_forms_menu_after', $wp_admin_bar, $form );
+		}
+	}
+
+	/**
+	 * Render All Forms admin menu bar item.
 	 *
 	 * @since 1.6.0
 	 *
@@ -215,14 +249,14 @@ class AdminBarMenu {
 			[
 				'parent' => 'wpforms-menu',
 				'id'     => 'wpforms-forms',
-				'title'  => esc_html__( 'All Forms', 'wpforms-lite' ),
+				'title'  => __( 'All Forms', 'wpforms-lite' ),
 				'href'   => admin_url( 'admin.php?page=wpforms-overview' ),
 			]
 		);
 	}
 
 	/**
-	 * Render Add New admin bar menu item.
+	 * Render Add New admin menu bar item.
 	 *
 	 * @since 1.6.0
 	 *
@@ -234,14 +268,14 @@ class AdminBarMenu {
 			[
 				'parent' => 'wpforms-menu',
 				'id'     => 'wpforms-add-new',
-				'title'  => esc_html__( 'Add New', 'wpforms-lite' ),
+				'title'  => __( 'Add New', 'wpforms-lite' ),
 				'href'   => admin_url( 'admin.php?page=wpforms-builder' ),
 			]
 		);
 	}
 
 	/**
-	 * Render Community admin bar menu item.
+	 * Render Community admin menu bar item.
 	 *
 	 * @since 1.6.0
 	 *
@@ -253,7 +287,7 @@ class AdminBarMenu {
 			[
 				'parent' => 'wpforms-menu',
 				'id'     => 'wpforms-community',
-				'title'  => esc_html__( 'Community', 'wpforms-lite' ),
+				'title'  => __( 'Community', 'wpforms-lite' ),
 				'href'   => 'https://www.facebook.com/groups/wpformsvip/',
 				'meta'   => [
 					'target' => '_blank',
@@ -264,7 +298,7 @@ class AdminBarMenu {
 	}
 
 	/**
-	 * Render Support admin bar menu item.
+	 * Render Support admin menu bar item.
 	 *
 	 * @since 1.6.0
 	 *
@@ -276,81 +310,13 @@ class AdminBarMenu {
 			[
 				'parent' => 'wpforms-menu',
 				'id'     => 'wpforms-support',
-				'title'  => esc_html__( 'Support', 'wpforms-lite' ),
+				'title'  => __( 'Support', 'wpforms-lite' ),
 				'href'   => 'https://wpforms.com/docs/',
 				'meta'   => [
 					'target' => '_blank',
 					'rel'    => 'noopener noreferrer',
 				],
 			]
-		);
-	}
-
-	/**
-	 * Get form data for JS to modify the admin bar menu.
-	 *
-	 * @since 1.6.5
-	 *
-	 * @param array $forms Forms array.
-	 *
-	 * @return array
-	 */
-	protected function get_forms_data( $forms ) {
-
-		$data = [
-			'has_notifications' => $this->has_notifications(),
-			'edit_text'         => esc_html__( 'Edit Form', 'wpforms-lite' ),
-			'entry_text'        => esc_html__( 'View Entries', 'wpforms-lite' ),
-			'survey_text'       => esc_html__( 'Survey Results', 'wpforms-lite' ),
-			'forms'             => [],
-		];
-
-		foreach ( $forms as $form ) {
-			$form_id = absint( $form['id'] );
-
-			/* translators: %d - Form ID */
-			$form_title = sprintf( esc_html__( 'Form ID: %d', 'wpforms-lite' ), $form_id );
-
-			if ( ! empty( $form['settings'] ) && ! empty( $form['settings']['form_title'] ) ) {
-				$form_title = wp_html_excerpt(
-					sanitize_text_field( $form['settings']['form_title'] ),
-					99,
-					'&hellip;'
-				);
-			}
-
-			$data['forms'][] = apply_filters(
-				'wpforms_admin_adminbarmenu_get_form_data',
-				[
-					'form_id'  => $form_id,
-					'title'    => $form_title,
-					'edit_url' => admin_url( 'admin.php?page=wpforms-builder&view=fields&form_id=' . $form_id ),
-				]
-			);
-		}
-
-		return $data;
-	}
-
-	/**
-	 * Add form(s) data to the page.
-	 *
-	 * @since 1.6.5
-	 *
-	 * @param array $forms Forms array.
-	 */
-	public function menu_forms_data_html( $forms ) {
-
-		if ( empty( $forms ) ) {
-			return;
-		}
-
-		echo wpforms_render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			'admin-bar-menu',
-			[
-				'forms_data' => $this->get_forms_data( $forms ),
-			],
-			true
 		);
 	}
 }

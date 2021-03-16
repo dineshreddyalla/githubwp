@@ -1,6 +1,7 @@
+var l10n = wp.media.view.l10n
 $ = jQuery
 // Search input view controller.
-var AstraSearch = wp.Backbone.View.extend({
+AstraSearch = wp.Backbone.View.extend({
 
     tagName: 'input',
     className: 'ast-image__search',
@@ -60,6 +61,7 @@ var AstraSearch = wp.Backbone.View.extend({
             return;
         }
 
+        var options = {};
         let thisObject = this;
         thisObject.searching = true;
         AstraImageCommon.config.q = event.target.value;

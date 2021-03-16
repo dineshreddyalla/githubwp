@@ -1,4 +1,4 @@
-;(function($) {
+(function($) {
 
 	// cache some values
 	var cache	= {
@@ -33,7 +33,6 @@
 							
 							// hide the content div
 							$el.find('.va-content').hide();
-							$el.find('.va-title').removeClass('htmegava-active');
 							
 							// control the navigation buttons visibility
 							if( aux.canSlideUp( $slices, settings ) )
@@ -85,13 +84,7 @@
 						   .stop()
 						   .animate({
 								lineHeight	: cache.sliceH + 'px'
-						   }, settings.animSpeed, settings.animEasing );
-
-						   	if( !expanded ){
-						   		$el.find('.va-title').addClass('htmegava-active');
-						   	}else{
-								$el.find('.va-title').removeClass('htmegava-active');
-							}
+						   }, settings.animSpeed, settings.animEasing );	
 						   
 						// animate all the others
 						$others.each(function(i){
@@ -114,7 +107,7 @@
 										height	: othersHeight + 'px',
 										opacity	: ( expanded ) ? 1 : settings.animOpacity
 								  }, settings.animSpeed, settings.animEasing, dfd.resolve )
-								  .find('.va-title').removeClass('htmegava-active')
+								  .find('.va-title')
 								  .stop()
 								  .animate({
 										lineHeight	: othersHeight + 'px'
@@ -284,12 +277,13 @@
 			},
 			canSlideUp		: function( $slices, settings ) {
 				var $first			= $slices.eq( cache.current );
-
+					
 				if( $first.index() !== 0 )
 					return true;
 			},
 			canSlideDown	: function( $slices, settings ) {
 				var $last			= $slices.eq( cache.current + settings.visibleSlices - 1 );
+					
 				if( $last.index() !== cache.totalSlices - 1 )
 					return true;
 			}

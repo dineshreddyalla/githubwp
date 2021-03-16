@@ -786,7 +786,7 @@ ul.accordion--4 li .description a:hover {
 }
 
 ul.accordion--4 li .bgDescription {
-  background: transparent url(http://dineshreddyalla.github.io/githubwp/wp-content/plugins/ht-mega-for-elementor/assets/css/img/gallery/bgDescription.png) repeat-x top left;
+  background: transparent url(img/gallery/bgDescription.png) repeat-x top left;
   height: 340px;
   position: absolute;
   bottom: 0px;
@@ -838,11 +838,10 @@ ul.accordion--4 li .bgDescription {
 .accordion--5 .single_accordion .va-title {
   text-transform: uppercase;
   font-size: 40px;
-  margin-left: 5px;
+  margin-left: 20px;
   color: #ffffff;
   display: inline-block;
-  margin-top: 15px;
-  margin-right: 5px;
+  margin-top: 0;
 }
 
 .accordion--5 .single_accordion .va-title div {
@@ -865,7 +864,7 @@ ul.accordion--4 li .bgDescription {
 }
 
 .accor_wrapper .single_accordion{
-  background: #000 url(http://dineshreddyalla.github.io/githubwp/wp-content/plugins/ht-mega-for-elementor/assets/css/img/gallery/gallery-e1.jpg) no-repeat center center;
+  background: #000 url(img/gallery/gallery-e1.jpg) no-repeat center center;
   background-size: cover;
 }
 
@@ -2207,7 +2206,7 @@ a.price_btn{
 }
 
 .htmega-pricing-ribon::before {
-    content: url(http://dineshreddyalla.github.io/githubwp/wp-content/plugins/ht-mega-for-elementor/assets/images/pricing/pricing-ribon.png);
+    content: url(../images/pricing/pricing-ribon.png);
     left: 30px;
     position: absolute;
     top: -15px;
@@ -2863,9 +2862,6 @@ ul.brand-list li a{
 }
 
 /*Testimonial Style One*/
-.htmega-testimonial-activation {
-  z-index: 1;
-}
 .htmega-testimonial-style-1 .testimonal {
     text-align: center;
 }
@@ -2925,7 +2921,6 @@ ul.brand-list li a{
     transform: translate(-50%, -50%);
     border: 1px solid #6e6e6e;
     border-radius: 100%;
-    max-width: 100%;
 }
 
 .htmega-testimonial-style-2 .testimonal .content {
@@ -4215,9 +4210,6 @@ textarea {
   text-decoration: none;
 }
 
-.htmega-service .thumb{
-  display: inline-block;
-}
 .htmega-service .thumb a {
   display: block;
 }
@@ -6020,7 +6012,7 @@ a.instagram_follow_btn:hover {
 a.instagram_follow_btn i {
     background: #e4405f;
     width: 42px;
-    height: 43px;
+    height: 42px;
     line-height: 42px;
     font-size: 16px;
     text-align: center;
@@ -6086,9 +6078,13 @@ a.instagram_follow_btn.possition-center span {
     padding: 30px 0;
 }
 
-.htmega-instragram ul.htmega-instagram-list li .instagram-clip .htmega-content .instagram-like-comment p {
+.htmega-instragram ul.htmega-instagram-list li .instagram-clip .htmega-content .instagram-like-comment span {
     color: #fff;
     margin: 0 15px;
+}
+
+.htmega-instragram ul.htmega-instagram-list li .instagram-clip .htmega-content .instagram-like-comment span i {
+    padding-right: 10px;
 }
 
 .htmega-instragram ul.htmega-instagram-list li .instagram-clip .htmega-content .instagram-btn {
@@ -6249,8 +6245,12 @@ a.instagram_follow_btn.possition-center span {
     padding: 0 !important;
 }
 
-.htmega-instragram-style-3 ul li .instagram-clip .instagram-like-comment p {
+.htmega-instragram-style-3 ul li .instagram-clip .instagram-like-comment span {
     margin: 0 15px;
+}
+
+.htmega-instragram-style-3 ul li .instagram-clip .instagram-like-comment span i {
+    padding-right: 7px;
 }
 
 .htmega-instragram-style-3 ul li:hover .instagram-clip {
@@ -6262,20 +6262,6 @@ a.instagram_follow_btn.possition-center span {
     opacity: .7;
     -webkit-transform: scale(1.15) translate3d(0, 0, 0);
     transform: scale(1.15) translate3d(0, 0, 0);
-}
-
-.htmega-instragram-style-3 ul.htmega-instagram-list li .instagram-clip .htmega-content{
-  display: flex;
-  align-items: center;
-}
-
-.htmega-instragram-style-3 ul.htmega-instagram-list li .instagram-clip .htmega-content .instagram-btn{
-  position: static;
-  transform: translateY(0);
-  display: flex;
-}
-.htmega-instragram-style-3 ul.htmega-instagram-list li .instagram-clip .htmega-content .zoom_icon {
-    display: flex;
 }
 
 
@@ -8055,12 +8041,12 @@ button.htmega-notify-button {
 }
 
 .htmega-marker-style-2 .htmega_image_pointer::before {
-    content: "\f129";
+    content: "\f067";
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
-    font-family: "FontAwesome";
+    font-family: FontAwesome;
     color: #ed552d;
     font-size: 18px;
     width: 100%;
@@ -8187,7 +8173,7 @@ button.htmega-notify-button {
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(http://dineshreddyalla.github.io/githubwp/wp-content/plugins/ht-mega-for-elementor/assets/css/img/bg/bg-image-12.jpg);
+    background-image: url(img/bg/bg-image-12.jpg);
     position: relative;
     display: inline-block;
     text-align: center;
@@ -8201,7 +8187,7 @@ button.htmega-notify-button {
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(http://dineshreddyalla.github.io/githubwp/wp-content/plugins/ht-mega-for-elementor/assets/css/img/bg/bg-image-12.jpg);
+    background-image: url(img/bg/bg-image-12.jpg);
     width: 240px;
     position: absolute;
     top: 0;
@@ -8695,7 +8681,7 @@ button.htmega-notify-button {
     width: 300%;
     height: 50px;
     opacity: 0;
-    background: url(http://dineshreddyalla.github.io/githubwp/wp-content/plugins/ht-mega-for-elementor/assets/images/icons/line.svg) no-repeat top left;
+    background: url(../images/icons/line.svg) no-repeat top left;
     -webkit-transform: translate3d(130px, 0, 0);
     transform: translate3d(130px, 0, 0);
     -webkit-transition: -webkit-transform 0s 0.3s, opacity 0.3s;
@@ -9087,8 +9073,11 @@ button.htmega-notify-button {
 
 .htmega-error-style-3 .content a.page-back-btn {
     background: #fd5c5e;
+    width: 80px;
     display: inline-block;
-    border-radius: 31px;
+    height: 80px;
+    border-radius: 100%;
+    line-height: 80px;
     color: #d5cff2;
     font-size: 36px;
     transition: 0.5s ease-in-out;
@@ -9103,6 +9092,7 @@ button.htmega-notify-button {
     transform: scale(1.2);
     background: #18012c;
     color: #ffffff;
+    border-radius: 100%;
 }
 
 /*404 Styly 04*/
@@ -9162,9 +9152,6 @@ button.htmega-notify-button {
 }
 .htmega-counter-icon svg {
   width: 20px;
-}
-.htmega-counter-area .htmega-counter-img{
-  display: inline-block;
 }
 
 /*Counterup Style 1*/
@@ -13252,10 +13239,6 @@ a.htmega-downloadbtn {
   padding: 0;
 }
 
-.post-carousel-wrapper .content .post-inner h2 {
-    word-break: break-word;
-}
-
 .post-carousel-wrapper .htmega-postslider-layout-5 .content .post-inner ul {
     justify-content: flex-start;
 }
@@ -13373,7 +13356,7 @@ a.htmega-downloadbtn {
  * Business Hours
 */
 .shapebg_image--1 {
-    background-image: url(http://dineshreddyalla.github.io/githubwp/wp-content/plugins/ht-mega-for-elementor/assets/css/img/others/business-shape.png);
+    background-image: url(img/others/business-shape.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -13502,7 +13485,7 @@ a.htmega-downloadbtn {
 /* Business Hours style Four */
 .htmega-business-horurs-4 .business-hrs-inner {
     padding: 30px 50px;
-    background-image: url(http://dineshreddyalla.github.io/githubwp/wp-content/plugins/ht-mega-for-elementor/assets/css/img/bg/bg-image-40.jpg);
+    background-image: url(img/bg/bg-image-40.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -14639,7 +14622,6 @@ a.htmega-downloadbtn {
     /* Activate hardware acceleration for smoother animations */
     -webkit-transform: translate3d(0, 0, 0);
     -webkit-backface-visibility: hidden;
-   background-color: #007bff; 
 }
 
 

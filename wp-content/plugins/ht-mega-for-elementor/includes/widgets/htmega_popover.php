@@ -199,7 +199,7 @@ class HTMega_Elementor_Widget_Popover extends Widget_Base {
                     'label_on' => __( 'Show', 'htmega-addons' ),
                     'label_off' => __( 'Hide', 'htmega-addons' ),
                     'return_value' => 'yes',
-                    'default' => 'yes',
+                    'default' => 'no',
                 ]
             );
 
@@ -329,6 +329,10 @@ class HTMega_Elementor_Widget_Popover extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#ffffff',
                             'selectors' => [
                                 '{{WRAPPER}} .htmega-popover span' => 'color: {{VALUE}};',
@@ -451,6 +455,10 @@ class HTMega_Elementor_Widget_Popover extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#ffffff',
                             'selectors' => [
                                 '{{WRAPPER}} .htmega-popover span:hover' => 'color: {{VALUE}};',
@@ -594,6 +602,10 @@ class HTMega_Elementor_Widget_Popover extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#262626',
                             'selectors' => [
                                 '{{WRAPPER}} .htb-popover .htb-popover-header' => 'color: {{VALUE}} !important;',
@@ -699,6 +711,10 @@ class HTMega_Elementor_Widget_Popover extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#262626',
                             'selectors' => [
                                 '{{WRAPPER}} .htb-popover .htb-popover-body' => 'color: {{VALUE}};',
@@ -795,6 +811,10 @@ class HTMega_Elementor_Widget_Popover extends Widget_Base {
                         [
                             'label' => __( 'Arrow Border Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#e0e0e0',
                             'selectors' => [
                                 '{{WRAPPER}} .htb-bs-popover-auto[x-placement^=top] .htb-arrow::before' => 'border-top-color: {{VALUE}} !important;',
@@ -814,6 +834,10 @@ class HTMega_Elementor_Widget_Popover extends Widget_Base {
                         [
                             'label' => __( 'Arrow Background Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#ffffff',
                             'selectors' => [
                                 '{{WRAPPER}} .htb-popover.htb-bs-popover-auto[x-placement^="top"] .htb-arrow::after' => 'border-top-color: {{VALUE}} !important;',

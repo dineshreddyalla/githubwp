@@ -388,6 +388,10 @@ class HTMega_Elementor_Widget_Newsticker extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#ffffff',
                     'selectors' => [
                         '{{WRAPPER}} .breaking-news-ticker li a' => 'color: {{VALUE}};',
@@ -423,6 +427,10 @@ class HTMega_Elementor_Widget_Newsticker extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#ffffff',
                     'selectors' => [
                         '{{WRAPPER}} .breaking-news-default .breaking-news-title h5' => 'color: {{VALUE}};',
@@ -510,6 +518,10 @@ class HTMega_Elementor_Widget_Newsticker extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#ffffff',
                             'selectors' => [
                                 '{{WRAPPER}} .breaking-news-default .breaking-news-nav button i' => 'color: {{VALUE}};',
@@ -587,6 +599,10 @@ class HTMega_Elementor_Widget_Newsticker extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#ffffff',
                             'selectors' => [
                                 '{{WRAPPER}} .breaking-news-default .breaking-news-nav button:hover i' => 'color: {{VALUE}};',
@@ -637,6 +653,10 @@ class HTMega_Elementor_Widget_Newsticker extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#ffffff',
                     'selectors' => [
                         '{{WRAPPER}} .breaking-news-default .breaking-news-ticker li span.news_date' => 'color: {{VALUE}};',

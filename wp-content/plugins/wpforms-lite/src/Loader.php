@@ -39,26 +39,6 @@ class Loader {
 		$this->populate_migrations();
 		$this->populate_capabilities();
 		$this->populate_tasks();
-		$this->populate_forms();
-		$this->populate_logger();
-	}
-
-	/**
-	 * Populate the Forms related classes.
-	 *
-	 * @since 1.6.2
-	 */
-	private function populate_forms() {
-
-		$this->classes[] = [
-			'name' => 'Forms\Token',
-			'id'   => 'token',
-		];
-
-		$this->classes[] = [
-			'name' => 'Forms\Honeypot',
-			'id'   => 'honeypot',
-		];
 	}
 
 	/**
@@ -72,7 +52,6 @@ class Loader {
 			$this->classes,
 			[
 				'name' => 'Admin\AdminBarMenu',
-				'hook' => 'init',
 			],
 			[
 				'name' => 'Admin\Notifications',
@@ -81,28 +60,6 @@ class Loader {
 			[
 				'name' => 'Admin\Entries\Edit',
 				'id'   => 'entries_edit',
-				'hook' => 'admin_init',
-			],
-			[
-				'name' => 'Admin\Entries\Export\Export',
-			],
-			[
-				'name' => 'Admin\Challenge',
-				'id'   => 'challenge',
-			],
-			[
-				'name' => 'Admin\FormEmbedWizard',
-				'hook' => 'admin_init',
-			],
-			[
-				'name' => 'Admin\SiteHealth',
-			],
-			[
-				'name' => 'Admin\Builder\Help',
-				'id'   => 'builder_help',
-			],
-			[
-				'name' => 'Admin\Settings\Captcha',
 				'hook' => 'admin_init',
 			]
 		);
@@ -164,24 +121,6 @@ class Loader {
 				'id'   => 'tasks_meta',
 				'hook' => false,
 				'run'  => false,
-			]
-		);
-	}
-
-	/**
-	 * Populate logger loaded classes.
-	 *
-	 * @since 1.6.3
-	 */
-	private function populate_logger() {
-
-		array_push(
-			$this->classes,
-			[
-				'name' => 'Logger\Log',
-				'id'   => 'log',
-				'hook' => false,
-				'run'  => 'hooks',
 			]
 		);
 	}

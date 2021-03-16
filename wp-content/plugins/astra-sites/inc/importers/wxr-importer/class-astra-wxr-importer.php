@@ -76,7 +76,6 @@ class Astra_WXR_Importer {
 		Astra_Sites_Importer_Log::add( 'Inserted - Post ' . $post_id . ' - ' . get_post_type( $post_id ) . ' - ' . get_the_title( $post_id ) );
 
 		update_post_meta( $post_id, '_astra_sites_imported_post', true );
-		update_post_meta( $post_id, '_astra_sites_enable_for_batch', true );
 
 		// Set the full width template for the pages.
 		if ( isset( $data['post_type'] ) && 'page' === $data['post_type'] ) {
@@ -148,11 +147,9 @@ class Astra_WXR_Importer {
 			$is_beaver_builder_page = in_array( '_fl_builder_enabled', $meta_data, true );
 			$is_brizy_page          = in_array( 'brizy_post_uid', $meta_data, true );
 
-			$disable_post_content = apply_filters( 'astra_sites_pre_process_post_disable_content', ( $is_attachment || $is_elementor_page || $is_beaver_builder_page || $is_brizy_page ) );
-
 			// If post type is `attachment OR
 			// If page contain Elementor, Brizy or Beaver Builder meta then skip this page.
-			if ( $disable_post_content ) {
+			if ( $is_attachment || $is_elementor_page || $is_beaver_builder_page || $is_brizy_page ) {
 				$data['post_content'] = '';
 			} else {
 				/**
@@ -227,7 +224,7 @@ class Astra_WXR_Importer {
 		}
 
 		// Set EXT and real MIME type only for the file name `wpforms.json` or `wpforms-{page-id}.json`.
-		if ( ( strpos( $filename, 'wpforms' ) !== false ) || ( strpos( $filename, 'cartflows' ) !== false ) ) {
+		if ( strpos( $filename, 'wpforms' ) !== false ) {
 			$defaults['ext']  = 'json';
 			$defaults['type'] = 'text/plain';
 		}
@@ -275,7 +272,7 @@ class Astra_WXR_Importer {
 	 */
 	public function sse_import( $xml_url = '' ) {
 
-		if ( wp_doing_ajax() ) {
+		if ( ! defined( 'WP_CLI' ) ) {
 
 			// Verify Nonce.
 			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
@@ -310,7 +307,7 @@ class Astra_WXR_Importer {
 			exit;
 		}
 
-		if ( ! wp_doing_ajax() ) {
+		if ( ! defined( 'WP_CLI' ) ) {
 			// Time to run the import!
 			set_time_limit( 0 );
 
@@ -361,7 +358,7 @@ class Astra_WXR_Importer {
 		}
 
 		$this->emit_sse_message( $complete );
-		if ( wp_doing_ajax() ) {
+		if ( ! defined( 'WP_CLI' ) ) {
 			exit;
 		}
 	}
@@ -551,7 +548,7 @@ class Astra_WXR_Importer {
 	 */
 	public function emit_sse_message( $data ) {
 
-		if ( wp_doing_ajax() ) {
+		if ( ! defined( 'WP_CLI' ) ) {
 			echo "event: message\n";
 			echo 'data: ' . wp_json_encode( $data ) . "\n\n";
 

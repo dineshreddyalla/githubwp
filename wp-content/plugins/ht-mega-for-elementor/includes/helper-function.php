@@ -108,9 +108,6 @@ if( !function_exists('htmega_get_post_types') ){
         $_post_types = get_post_types( $post_type_args , 'objects' );
 
         $post_types  = [];
-        if( !empty( $args['defaultadd'] ) ){
-            $post_types[ strtolower($args['defaultadd']) ] = ucfirst($args['defaultadd']);
-        }
         foreach ( $_post_types as $post_type => $object ) {
             $post_types[ $post_type ] = $object->label;
         }

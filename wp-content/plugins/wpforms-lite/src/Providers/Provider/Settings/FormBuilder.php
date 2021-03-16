@@ -93,21 +93,8 @@ abstract class FormBuilder implements FormBuilderInterface {
 	 * Used to register generic templates for all providers inside form builder.
 	 *
 	 * @since 1.4.7
-	 * @since 1.6.2 Added sub-templates for conditional logic based on provider.
 	 */
 	public function builder_templates() {
-
-		$cl_builder_block = wpforms_conditional_logic()->builder_block(
-			array(
-				'form'       => $this->form_data,
-				'type'       => 'panel',
-				'parent'     => 'providers',
-				'panel'      => esc_attr( $this->core->slug ),
-				'subsection' => '%connection_id%',
-				'reference'  => esc_html__( 'Marketing provider connection', 'wpforms-lite' ),
-			),
-			false
-		);
 		?>
 
 		<!-- Single connection block sub-template: FIELDS -->
@@ -129,7 +116,7 @@ abstract class FormBuilder implements FormBuilderInterface {
 										<# if ( ! _.isEmpty( data.provider.fields ) ) { #>
 											<select class="wpforms-builder-provider-connection-field-name"
 												name="providers[{{ data.provider.slug }}][{{ data.connection.id }}][fields_meta][{{ meta_id }}][name]">
-												<option value=""><# if ( ! _.isEmpty( data.provider.placeholder ) ) { #>{{ data.provider.placeholder }}<# } else { #><?php esc_html_e( '--- Select Field ---', 'wpforms-lite' ); ?><# } #></option>
+												<option value="" selected disabled><?php \esc_attr_e( '--- Select Field ---', 'wpforms-lite' ); ?></option>
 
 												<# _.each( data.provider.fields, function( field_name, field_id ) { #>
 													<option value="{{ field_id }}"
@@ -151,17 +138,13 @@ abstract class FormBuilder implements FormBuilderInterface {
 									<td>
 										<select class="wpforms-builder-provider-connection-field-value"
 											name="providers[{{ data.provider.slug }}][{{ data.connection.id }}][fields_meta][{{ meta_id }}][field_id]">
-											<option value=""><?php esc_html_e( '--- Select Form Field ---', 'wpforms-lite' ); ?></option>
+											<option value="" selected disabled><?php \esc_html_e( '--- Select Field ---', 'wpforms-lite' ); ?></option>
 
 											<# _.each( data.fields, function( field, key ) { #>
 												<option value="{{ field.id }}"
 														<# if ( field.id === item.field_id ) { #>selected="selected"<# } #>
 												>
-												<# if ( ! _.isUndefined( field.label ) && field.label.toString().trim() !== '' ) { #>
-													{{ field.label.toString().trim() }}
-												<# } else { #>
-													{{ wpforms_builder.field + ' #' + key }}
-												<# } #>
+													{{ field.label }}
 												</option>
 											<# } ); #>
 										</select>
@@ -186,7 +169,7 @@ abstract class FormBuilder implements FormBuilderInterface {
 									<# if ( ! _.isEmpty( data.provider.fields ) ) { #>
 										<select class="wpforms-builder-provider-connection-field-name"
 											name="providers[{{ data.provider.slug }}][{{ data.connection.id }}][fields_meta][0][name]">
-											<option value=""><# if ( ! _.isEmpty( data.provider.placeholder ) ) { #>{{ data.provider.placeholder }}<# } else { #><?php esc_html_e( '--- Select Field ---', 'wpforms-lite' ); ?><# } #></option>
+											<option value="" selected disabled><?php \esc_attr_e( '--- Select Field ---', 'wpforms-lite' ); ?></option>
 
 											<# _.each( data.provider.fields, function( field_name, field_id ) { #>
 												<option value="{{ field_id }}">
@@ -206,15 +189,11 @@ abstract class FormBuilder implements FormBuilderInterface {
 								<td>
 									<select class="wpforms-builder-provider-connection-field-value"
 										name="providers[{{ data.provider.slug }}][{{ data.connection.id }}][fields_meta][0][field_id]">
-										<option value=""><?php esc_html_e( '--- Select Form Field ---', 'wpforms-lite' ); ?></option>
+										<option value="" selected disabled><?php \esc_html_e( '--- Select Field ---', 'wpforms-lite' ); ?></option>
 
 										<# _.each( data.fields, function( field, key ) { #>
 											<option value="{{ field.id }}">
-												<# if ( ! _.isUndefined( field.label ) && field.label.toString().trim() !== '' ) { #>
-													{{ field.label.toString().trim() }}
-												<# } else { #>
-													{{ wpforms_builder.field + ' #' + key }}
-												<# } #>
+												{{ field.label }}
 											</option>
 										<# } ); #>
 									</select>
@@ -244,13 +223,20 @@ abstract class FormBuilder implements FormBuilderInterface {
 		</script>
 
 		<!-- Single connection block sub-template: CONDITIONAL LOGIC -->
-		<script type="text/html" id="tmpl-wpforms-<?php echo esc_attr( $this->core->slug ); ?>-builder-content-connection-conditionals">
-			<?php echo $cl_builder_block; // phpcs:ignore ?>
-		</script>
-
-		<!-- DEPRECATED: Should be removed when we will make changes in our addons. -->
 		<script type="text/html" id="tmpl-wpforms-providers-builder-content-connection-conditionals">
-			<?php echo $cl_builder_block; // phpcs:ignore ?>
+			<?php
+			echo wpforms_conditional_logic()->builder_block( // phpcs:ignore
+				array(
+					'form'       => $this->form_data,
+					'type'       => 'panel',
+					'parent'     => 'providers',
+					'panel'      => esc_attr( $this->core->slug ),
+					'subsection' => '%connection_id%',
+					'reference'  => esc_html__( 'Marketing provider connection', 'wpforms-lite' ),
+				),
+				false
+			);
+			?>
 		</script>
 		<?php
 	}

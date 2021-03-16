@@ -65,15 +65,8 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 		 * @return void
 		 */
 		public function loader() {
-			require_once UAGB_DIR . 'classes/class-uagb-admin-helper.php';
 			require_once UAGB_DIR . 'classes/class-uagb-helper.php';
 			require_once UAGB_DIR . 'classes/class-uagb-update.php';
-			require_once UAGB_DIR . 'admin/bsf-analytics/class-bsf-analytics.php';
-			require_once UAGB_DIR . 'lib/class-uagb-ast-block-templates.php';
-
-			if ( 'twentyseventeen' === get_template() ) {
-				require_once UAGB_DIR . 'classes/class-uagb-twenty-seventeen-compatibility.php';
-			}
 		}
 
 		/**
@@ -85,18 +78,12 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 			define( 'UAGB_BASE', plugin_basename( UAGB_FILE ) );
 			define( 'UAGB_DIR', plugin_dir_path( UAGB_FILE ) );
 			define( 'UAGB_URL', plugins_url( '/', UAGB_FILE ) );
-			define( 'UAGB_VER', '1.21.1' );
+			define( 'UAGB_VER', '1.14.11' );
 			define( 'UAGB_MODULES_DIR', UAGB_DIR . 'modules/' );
 			define( 'UAGB_MODULES_URL', UAGB_URL . 'modules/' );
 			define( 'UAGB_SLUG', 'uag' );
-			define( 'UAGB_URI', trailingslashit( 'https://ultimategutenberg.com/' ) );
-
-			if ( ! defined( 'UAGB_TABLET_BREAKPOINT' ) ) {
-				define( 'UAGB_TABLET_BREAKPOINT', '976' );
-			}
-			if ( ! defined( 'UAGB_MOBILE_BREAKPOINT' ) ) {
-				define( 'UAGB_MOBILE_BREAKPOINT', '767' );
-			}
+			define( 'UAGB_TABLET_BREAKPOINT', '976' );
+			define( 'UAGB_MOBILE_BREAKPOINT', '767' );
 		}
 
 		/**
@@ -111,14 +98,10 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 			$this->load_textdomain();
 
 			require_once UAGB_DIR . 'classes/class-uagb-core-plugin.php';
-			require_once UAGB_DIR . 'classes/class-uagb-rest-api.php';
-			require_once UAGB_DIR . 'dist/blocks/post/class-uagb-post.php';
-			require_once UAGB_DIR . 'dist/blocks/post-timeline/class-uagb-post-timeline.php';
-			require_once UAGB_DIR . 'dist/blocks/cf7-styler/class-uagb-cf7-styler.php';
-			require_once UAGB_DIR . 'dist/blocks/gf-styler/class-uagb-gf-styler.php';
-			require_once UAGB_DIR . 'dist/blocks/taxonomy-list/class-uagb-taxonomy-list.php';
-			require_once UAGB_DIR . 'dist/blocks/lottie/class-uagb-lottie.php';
-
+			require_once UAGB_DIR . 'dist/blocks/post/index.php';
+			require_once UAGB_DIR . 'dist/blocks/post-timeline/index.php';
+			require_once UAGB_DIR . 'dist/blocks/cf7-styler/index.php';
+			require_once UAGB_DIR . 'dist/blocks/gf-styler/index.php';
 		}
 
 		/**
@@ -136,7 +119,7 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 		 * Load Ultimate Gutenberg Text Domain.
 		 * This will load the translation textdomain depending on the file priorities.
 		 *      1. Global Languages /wp-content/languages/ultimate-addons-for-gutenberg/ folder
-		 *      2. Local directory /wp-content/plugins/ultimate-addons-for-gutenberg/languages/ folder
+		 *      2. Local dorectory /wp-content/plugins/ultimate-addons-for-gutenberg/languages/ folder
 		 *
 		 * @since  1.0.0
 		 * @return void
@@ -161,17 +144,27 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 		 * @return void
 		 */
 		public function uagb_fails_to_load() {
-
-			if ( ! current_user_can( 'install_plugins' ) ) {
-				return;
-			}
-
 			$class = 'notice notice-error';
 			/* translators: %s: html tags */
 			$message = sprintf( __( 'The %1$sUltimate Addon for Gutenberg%2$s plugin requires %1$sGutenberg%2$s plugin installed & activated.', 'ultimate-addons-for-gutenberg' ), '<strong>', '</strong>' );
 
-			$action_url   = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=gutenberg' ), 'install-plugin_gutenberg' );
-			$button_label = __( 'Install Gutenberg', 'ultimate-addons-for-gutenberg' );
+			$plugin = 'gutenberg/gutenberg.php';
+
+			if ( _is_gutenberg_installed( $plugin ) ) {
+				if ( ! current_user_can( 'activate_plugins' ) ) {
+					return;
+				}
+
+				$action_url   = wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin );
+				$button_label = __( 'Activate Gutenberg', 'ultimate-addons-for-gutenberg' );
+			} else {
+				if ( ! current_user_can( 'install_plugins' ) ) {
+					return;
+				}
+
+				$action_url   = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=gutenberg' ), 'install-plugin_gutenberg' );
+				$button_label = __( 'Install Gutenberg', 'ultimate-addons-for-gutenberg' );
+			}
 
 			$button = '<p><a href="' . $action_url . '" class="button-primary">' . $button_label . '</a></p><p></p>';
 
@@ -198,4 +191,25 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 	 *  Kicking this off by calling 'get_instance()' method
 	 */
 	UAGB_Loader::get_instance();
+}
+
+/**
+ * Is Gutenberg plugin installed.
+ */
+if ( ! function_exists( '_is_gutenberg_installed' ) ) {
+
+	/**
+	 * Check if Gutenberg Pro is installed
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $plugin_path Plugin path.
+	 * @return boolean true | false
+	 * @access public
+	 */
+	function _is_gutenberg_installed( $plugin_path ) {
+		$plugins = get_plugins();
+
+		return isset( $plugins[ $plugin_path ] );
+	}
 }

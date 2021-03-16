@@ -1,13 +1,14 @@
-/* global wpforms_challenge_admin, ajaxurl, WPFormsBuilder */
+/* globals wpforms_challenge_admin, ajaxurl */
 /**
  * WPForms Challenge Admin function.
  *
  * @since 1.5.0
- * @since 1.6.2 Challenge v2
  */
 'use strict';
 
-var WPFormsChallenge = window.WPFormsChallenge || {};
+if ( typeof WPFormsChallenge === 'undefined' ) {
+	var WPFormsChallenge = {};
+}
 
 WPFormsChallenge.admin = window.WPFormsChallenge.admin || ( function( document, window, $ ) {
 
@@ -16,7 +17,7 @@ WPFormsChallenge.admin = window.WPFormsChallenge.admin || ( function( document, 
 	 *
 	 * @since 1.5.0
 	 *
-	 * @type {object}
+	 * @type {Object}
 	 */
 	var app = {
 
@@ -29,7 +30,7 @@ WPFormsChallenge.admin = window.WPFormsChallenge.admin || ( function( document, 
 		 */
 		init: function() {
 
-			$( app.ready );
+			$( document ).ready( app.ready );
 		},
 
 		/**
@@ -49,44 +50,36 @@ WPFormsChallenge.admin = window.WPFormsChallenge.admin || ( function( document, 
 		 */
 		events: function() {
 
-			$( '.wpforms-challenge-list-block' )
-				.on( 'click', '.challenge-skip', app.skipChallenge )
-				.on( 'click', '.challenge-cancel', app.cancelChallenge )
-				.on( 'click', '.toggle-list', app.toggleList );
+			$( '.wpforms-challenge-skip' ).click( function() {
+				app.skipChallenge();
+			} );
+
+			$( '.block-timer .caret-icon' ).click( function() {
+				app.toggleList( $( this ) );
+			} );
 		},
 
 		/**
-		 * Toggle list icon click.
+		 * Register JS events.
 		 *
 		 * @since 1.5.0
 		 *
-		 * @param {object} e Event object.
+		 * @param {Object} $caretIcon Caret icon jQuery element.
 		 */
-		toggleList: function( e ) {
+		toggleList: function( $caretIcon ) {
 
-			var $icon = $( e.target ),
-				$listBlock = $( '.wpforms-challenge-list-block' );
+			var $listBlock = $( '.wpforms-challenge-list-block' );
 
-			if ( ! $listBlock.length ||  ! $icon.length ) {
+			if ( ! $listBlock.length || ! $caretIcon.length ) {
 				return;
 			}
 
-			if ( $listBlock.hasClass( 'closed' ) ) {
-				wpforms_challenge_admin.option.window_closed = '0';
-				$listBlock.removeClass( 'closed' );
-
-				setTimeout( function() {
-					$listBlock.removeClass( 'transition-back' );
-				}, 600 );
+			if ( $caretIcon.hasClass( 'closed' ) ) {
+				$listBlock.show();
+				$caretIcon.removeClass( 'closed' );
 			} else {
-				wpforms_challenge_admin.option.window_closed = '1';
-				$listBlock.addClass( 'closed' );
-
-				// Add `transition-back` class when the forward transition is completed.
-				// It is needed to properly implement transitions order for some elements.
-				setTimeout( function() {
-					$listBlock.addClass( 'transition-back' );
-				}, 600 );
+				$listBlock.hide();
+				$caretIcon.addClass( 'closed' );
 			}
 		},
 
@@ -110,46 +103,11 @@ WPFormsChallenge.admin = window.WPFormsChallenge.admin || ( function( document, 
 		},
 
 		/**
-		 * Cancel Challenge after starting it.
-		 *
-		 * @since 1.6.2
-		 */
-		cancelChallenge: function() {
-
-			var core = WPFormsChallenge.core;
-
-			core.timer.pause();
-
-			/* eslint-disable camelcase */
-			var optionData = {
-				status       : 'canceled',
-				seconds_spent: core.timer.getSecondsSpent(),
-				seconds_left : core.timer.getSecondsLeft(),
-				feedback_sent: false,
-			};
-			/* eslint-enable */
-
-			core.removeChallengeUI();
-			core.clearLocalStorage();
-
-			if ( typeof WPFormsBuilder !== 'undefined' ) {
-				WPFormsChallenge.admin.saveChallengeOption( optionData )
-					.done( WPFormsBuilder.formSave ) // Save the form before reloading if we're in a WPForms Builder.
-					.done( location.reload.bind( location ) ); // Reload the page to remove WPForms Challenge JS.
-			} else {
-				WPFormsChallenge.admin.saveChallengeOption( optionData )
-					.done( app.triggerPageSave ); // Assume we're on form embed page.
-			}
-		},
-
-		/**
 		 * Set Challenge parameter(s) to Challenge option.
 		 *
 		 * @since 1.5.0
 		 *
-		 * @param {object} optionData Query using option schema keys.
-		 *
-		 * @returns {promise} jQuey.post() promise interface.
+		 * @param {Object} optionData Query using option schema keys.
 		 */
 		saveChallengeOption: function( optionData ) {
 
@@ -158,11 +116,6 @@ WPFormsChallenge.admin = window.WPFormsChallenge.admin || ( function( document, 
 				option_data: optionData,
 				_wpnonce   : app.l10n.nonce,
 			};
-
-			// Save window closed (collapsed) state as well.
-			data.option_data.window_closed = wpforms_challenge_admin.option.window_closed;
-
-			$.extend( wpforms_challenge_admin.option, optionData );
 
 			return $.post( ajaxurl, data, function( response ) {
 				if ( ! response.success ) {

@@ -2,7 +2,6 @@
 
 namespace WPMailSMTP\Providers\Sendgrid;
 
-use WPMailSMTP\MailCatcherInterface;
 use WPMailSMTP\Providers\MailerAbstract;
 use WPMailSMTP\WP;
 
@@ -36,11 +35,11 @@ class Mailer extends MailerAbstract {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param MailCatcherInterface $phpmailer The MailCatcher object.
+	 * @param \WPMailSMTP\MailCatcher $phpmailer
 	 */
 	public function __construct( $phpmailer ) {
 
-		// We want to prefill everything from MailCatcher class, which extends PHPMailer.
+		// We want to prefill everything from \WPMailSMTP\MailCatcher class, which extends \PHPMailer.
 		parent::__construct( $phpmailer );
 
 		$this->set_header( 'Authorization', 'Bearer ' . $this->options->get( $this->mailer, 'api_key' ) );
@@ -352,7 +351,7 @@ class Mailer extends MailerAbstract {
 	 *
 	 * @return string
 	 */
-	public function get_response_error() { // phpcs:ignore
+	protected function get_response_error() {
 
 		$body = (array) wp_remote_retrieve_body( $this->response );
 
@@ -374,8 +373,6 @@ class Mailer extends MailerAbstract {
 					$error_text[] = $error->message . ( ! empty( $extra ) ? ' - ' . $extra : '' );
 				}
 			}
-		} elseif ( ! empty( $this->error_message ) ) {
-			$error_text[] = $this->error_message;
 		}
 
 		return implode( '<br>', array_map( 'esc_textarea', $error_text ) );

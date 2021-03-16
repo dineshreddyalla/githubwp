@@ -276,7 +276,7 @@ class HTMega_Elementor_Widget_Flip_Box extends Widget_Base {
         $this->start_controls_section(
             'flipbox_options',
             [
-                'label' => __( 'Additional Options', 'htmega-addons' ),
+                'label' => __( 'Aditional Options', 'htmega-addons' ),
             ]
         );
 
@@ -414,7 +414,7 @@ class HTMega_Elementor_Widget_Flip_Box extends Widget_Base {
             $this->add_control(
                 'flipbox_style_tab_heading',
                 [
-                    'label' => __( 'Content Style Tabs', 'htmega-addons' ),
+                    'label' => __( 'Content Style Tabs', 'plugin-name' ),
                     'type' => Controls_Manager::HEADING,
                     'separator' => 'before',
                 ]
@@ -434,6 +434,10 @@ class HTMega_Elementor_Widget_Flip_Box extends Widget_Base {
                         [
                             'label' => __( 'Title Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#4a4a4a',
                             'selectors' => [
                                 '{{WRAPPER}} .front-container h2' => 'color: {{VALUE}};',
@@ -514,6 +518,10 @@ class HTMega_Elementor_Widget_Flip_Box extends Widget_Base {
                         [
                             'label' => __( 'Icon Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#4a4a4a',
                             'selectors' => [
                                 '{{WRAPPER}} .front-container span.flipbox-icon i' => 'color: {{VALUE}};',
@@ -554,6 +562,10 @@ class HTMega_Elementor_Widget_Flip_Box extends Widget_Base {
                         [
                             'label' => __( 'Icon Background Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#ff7a5a',
                             'selectors' => [
                                 '{{WRAPPER}} .front-container span.flipbox-icon' => 'background-color: {{VALUE}};',
@@ -673,6 +685,10 @@ class HTMega_Elementor_Widget_Flip_Box extends Widget_Base {
                         [
                             'label' => __( 'Number Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#4a4a4a',
                             'selectors' => [
                                 '{{WRAPPER}} .front-container .flipbox-number' => 'color: {{VALUE}};',
@@ -836,7 +852,7 @@ class HTMega_Elementor_Widget_Flip_Box extends Widget_Base {
             $this->add_control(
                 'flipbox_back_style_tab_heading',
                 [
-                    'label' => __( 'Content Style Tabs', 'htmega-addons' ),
+                    'label' => __( 'Content Style Tabs', 'plugin-name' ),
                     'type' => Controls_Manager::HEADING,
                     'separator' => 'before',
                 ]
@@ -856,6 +872,10 @@ class HTMega_Elementor_Widget_Flip_Box extends Widget_Base {
                         [
                             'label' => __( 'Title Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#ffffff',
                             'selectors' => [
                                 '{{WRAPPER}} .back-container h2' => 'color: {{VALUE}};',
@@ -931,6 +951,10 @@ class HTMega_Elementor_Widget_Flip_Box extends Widget_Base {
                         [
                             'label' => __( 'Description Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#ffffff',
                             'selectors' => [
                                 '{{WRAPPER}} .back-container p' => 'color: {{VALUE}};',
@@ -992,6 +1016,10 @@ class HTMega_Elementor_Widget_Flip_Box extends Widget_Base {
                         [
                             'label' => __( 'Icon Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#4a4a4a',
                             'selectors' => [
                                 '{{WRAPPER}} .back-container span.flipbox-icon i' => 'color: {{VALUE}};',
@@ -1032,6 +1060,10 @@ class HTMega_Elementor_Widget_Flip_Box extends Widget_Base {
                         [
                             'label' => __( 'Icon Background Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#ff7a5a',
                             'selectors' => [
                                 '{{WRAPPER}} .back-container span.flipbox-icon' => 'background-color: {{VALUE}};',
@@ -1152,6 +1184,10 @@ class HTMega_Elementor_Widget_Flip_Box extends Widget_Base {
                         [
                             'label' => __( 'Number Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#ffffff',
                             'selectors' => [
                                 '{{WRAPPER}} .back-container .flipbox-number' => 'color: {{VALUE}};',

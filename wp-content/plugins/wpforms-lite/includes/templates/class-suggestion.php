@@ -82,7 +82,7 @@ class WPForms_Template_Suggestion extends WPForms_Template {
 						'sender_address' => '{admin_email}',
 					),
 				),
-				'antispam'                    => '1',
+				'honeypot'                    => '1',
 				'confirmation_message_scroll' => '1',
 				'submit_text_processing'      => esc_html__( 'Sending...', 'wpforms-lite' ),
 			),

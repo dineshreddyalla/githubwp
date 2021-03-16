@@ -117,7 +117,7 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 
 			$this->front_setup( $args, $instance );
 
-			$title        = isset( $instance['title'] ) ? apply_filters( 'widget_title', $instance['title'] ) : '';
+			$title        = apply_filters( 'widget_title', $instance['title'] );
 			$style        = isset( $instance['style'] ) ? $instance['style'] : 'stack';
 			$social_icons = isset( $instance['display-icons'] ) ? $instance['display-icons'] : false;
 			$address      = isset( $instance['address'] ) ? $instance['address'] : '';
@@ -223,8 +223,6 @@ if ( ! class_exists( 'Astra_Widget_Address' ) ) :
 			 *       For now we have not able to detect the `checkbox` field in `generate` of class `Astra_Widgets_Helper`.
 			 */
 			$instance['display-icons'] = isset( $new_instance['display-icons'] ) ? (bool) $new_instance['display-icons'] : false;
-
-			$instance = array_map( 'sanitize_text_field', $instance );
 
 			return $instance;
 		}

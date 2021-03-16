@@ -35,6 +35,7 @@ class Loader {
 		$core_class_names = array(
 			'Connect',
 			'DashboardWidget',
+			'Challenge',
 			'Education',
 			'FlyoutMenu',
 			'Builder\Education',
@@ -45,6 +46,7 @@ class Loader {
 			'Settings\Education',
 			'Entries\PrintPreview',
 			'Entries\DefaultScreen',
+			'Entries\Export\Export',
 		);
 
 		$class_names = \apply_filters( 'wpforms_admin_classes_available', $core_class_names );

@@ -84,26 +84,7 @@ if ( ! class_exists( 'Astra_Enqueue_Scripts' ) ) {
 		 * @return String body classes to be added to <body> tag in admin page
 		 */
 		public function admin_body_class( $classes ) {
-
-			global $pagenow;
-			$screen = get_current_screen();
-
-			if ( ( 'post-new.php' == $pagenow || 'post.php' == $pagenow ) && ( defined( 'ASTRA_ADVANCED_HOOKS_POST_TYPE' ) && ASTRA_ADVANCED_HOOKS_POST_TYPE == $screen->post_type ) ) {
-				return;
-			}
-
-			$post_id = get_the_ID();
-
-			if ( $post_id ) {
-				$meta_content_layout = get_post_meta( $post_id, 'site-content-layout', true );
-			}
-
-			if ( ( isset( $meta_content_layout ) && ! empty( $meta_content_layout ) ) && 'default' !== $meta_content_layout ) {
-				$content_layout = $meta_content_layout;
-			} else {
-				$content_layout = astra_get_option( 'site-content-layout' );
-			}
-
+			$content_layout = astra_get_content_layout();
 			if ( 'content-boxed-container' == $content_layout ) {
 				$classes .= ' ast-separate-container';
 			} elseif ( 'boxed-container' == $content_layout ) {
@@ -126,39 +107,18 @@ if ( ! class_exists( 'Astra_Enqueue_Scripts' ) ) {
 		 */
 		public static function theme_assets() {
 
-			if ( Astra_Builder_Helper::$is_header_footer_builder_active ) {
+			$default_assets = array(
 
-				$default_assets = array(
+				// handle => location ( in /assets/js/ ) ( without .js ext).
+				'js'  => array(
+					'astra-theme-js' => 'style',
+				),
 
-					// handle => location ( in /assets/js/ ) ( without .js ext).
-					'js'  => array(
-						'astra-theme-js' => 'frontend',
-					),
-					// handle => location ( in /assets/css/ ) ( without .css ext).
-					'css' => array(
-						'astra-theme-css' => 'frontend',
-					),
-				);
-				
-				if ( Astra_Builder_Helper::is_component_loaded( 'edd-cart', 'header' ) || 
-					Astra_Builder_Helper::is_component_loaded( 'woo-cart', 'header' ) ) {                       
-					$default_assets['js']['astra-mobile-cart'] = 'mobile-cart';
-				}
-			} else {
-
-				$default_assets = array(
-
-					// handle => location ( in /assets/js/ ) ( without .js ext).
-					'js'  => array(
-						'astra-theme-js' => 'style',
-					),
-
-					// handle => location ( in /assets/css/ ) ( without .css ext).
-					'css' => array(
-						'astra-theme-css' => 'style',
-					),
-				);
-			}
+				// handle => location ( in /assets/css/ ) ( without .css ext).
+				'css' => array(
+					'astra-theme-css' => 'style',
+				),
+			);
 
 			return apply_filters( 'astra_theme_assets', $default_assets );
 		}
@@ -253,22 +213,8 @@ if ( ! class_exists( 'Astra_Enqueue_Scripts' ) ) {
 			add_filter( 'astra_dynamic_theme_css', array( 'Astra_Dynamic_CSS', 'return_output' ) );
 			add_filter( 'astra_dynamic_theme_css', array( 'Astra_Dynamic_CSS', 'return_meta_output' ) );
 
-			// Submenu Container Animation for header builder.
-			if ( Astra_Builder_Helper::$is_header_footer_builder_active ) {
-
-				for ( $index = 1; $index <= Astra_Builder_Helper::$component_limit; $index++ ) {
-
-					$menu_animation_enable = astra_get_option( 'header-menu' . $index . '-submenu-container-animation' );
-
-					if ( Astra_Builder_Helper::is_component_loaded( 'menu-' . $index, 'header' ) && ! empty( $menu_animation_enable ) ) {
-						$menu_animation = 'is_animated';
-						break;
-					}
-				}
-			} else {
-				$menu_animation = astra_get_option( 'header-main-submenu-container-animation' );
-			}
-
+			// Submenu Container Animation.
+			$menu_animation = astra_get_option( 'header-main-submenu-container-animation' );
 
 			$rtl = ( is_rtl() ) ? '-rtl' : '';
 
@@ -296,7 +242,6 @@ if ( ! class_exists( 'Astra_Enqueue_Scripts' ) ) {
 			}
 
 			if ( is_array( $scripts ) && ! empty( $scripts ) ) {
-
 				// Register & Enqueue Scripts.
 				foreach ( $scripts as $key => $script ) {
 
@@ -350,10 +295,8 @@ if ( ! class_exists( 'Astra_Enqueue_Scripts' ) ) {
 			}
 
 			$css_uri = ASTRA_THEME_URI . 'inc/assets/css/block-editor-styles' . $rtl . '.css';
-			$js_uri  = ASTRA_THEME_URI . 'inc/assets/js/block-editor-script.js';
 
 			wp_enqueue_style( 'astra-block-editor-styles', $css_uri, false, ASTRA_THEME_VERSION, 'all' );
-			wp_enqueue_script( 'astra-block-editor-script', $js_uri, false, ASTRA_THEME_VERSION, 'all' );
 
 			// Render fonts in Gutenberg layout.
 			Astra_Fonts::render_fonts();

@@ -57,7 +57,7 @@ class HTMega_Elementor_Widget_Image_Masonry extends Widget_Base {
             $this->add_control(
                 'imagemasonrycolumn',
                 [
-                    'label' => __( 'column', 'htmega-addons' ),
+                    'label' => __( 'Style', 'htmega-addons' ),
                     'type' => Controls_Manager::SELECT,
                     'default' => '3',
                     'options' => [
@@ -85,9 +85,9 @@ class HTMega_Elementor_Widget_Image_Masonry extends Widget_Base {
             $repeater->add_control(
                 'masonryimage_description',
                 [
-                    'label'   => __( 'Description', 'htmega-addons' ),
+                    'label'   => __( 'Desciption', 'htmega-addons' ),
                     'type'    => Controls_Manager::TEXTAREA,
-                    'placeholder' => __('Image Masonry Description.','htmega-addons'),
+                    'placeholder' => __('Image Masonry Desciption.','htmega-addons'),
                 ]
             );
 
@@ -136,12 +136,12 @@ class HTMega_Elementor_Widget_Image_Masonry extends Widget_Base {
                 'masonrygrid_list',
                 [
                     'type'    => Controls_Manager::REPEATER,
-                    'fields'  => $repeater->get_controls(),
+                    'fields'  => array_values( $repeater->get_controls() ),
                     'default' => [
 
                         [
                             'masonryimage_title'        => __('Image Masonry Title','htmega-addons'),
-                            'masonryimage_description'  => __( 'Image Masonry Description','htmega-addons' ),
+                            'masonryimage_description'  => __( 'Image Masonry Desciption','htmega-addons' ),
                             'masonryimage_btntxt'       => __( 'Read More', 'htmega-addons' ),
                             'masonryimage_btnlink'       => __( '#', 'htmega-addons' ),
                         ],
@@ -166,6 +166,10 @@ class HTMega_Elementor_Widget_Image_Masonry extends Widget_Base {
                 [
                     'label' => __( 'Overlay Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => 'rgba(0, 0, 0, 0.5)',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-singleimage-grid .thumb a::before' => 'background-color: {{VALUE}};',
@@ -220,6 +224,10 @@ class HTMega_Elementor_Widget_Image_Masonry extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#ffffff',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-singleimage-grid .image-grid-content h2' => 'color: {{VALUE}};',
@@ -265,7 +273,7 @@ class HTMega_Elementor_Widget_Image_Masonry extends Widget_Base {
         $this->start_controls_section(
             'imagemasonry_desciption_style_section',
             [
-                'label' => __( 'Description', 'htmega-addons' ),
+                'label' => __( 'Desciption', 'htmega-addons' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -306,6 +314,10 @@ class HTMega_Elementor_Widget_Image_Masonry extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#18012c',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-singleimage-grid .image-grid-content p' => 'color: {{VALUE}};',
@@ -359,6 +371,10 @@ class HTMega_Elementor_Widget_Image_Masonry extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#ffffff',
                             'selectors' => [
                                 '{{WRAPPER}} .htmega-singleimage-grid .image-grid-content a.read-btn' => 'color: {{VALUE}};',
@@ -431,6 +447,10 @@ class HTMega_Elementor_Widget_Image_Masonry extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#ffffff',
                             'selectors' => [
                                 '{{WRAPPER}} .htmega-singleimage-grid .image-grid-content a.read-btn:hover' => 'color: {{VALUE}};',

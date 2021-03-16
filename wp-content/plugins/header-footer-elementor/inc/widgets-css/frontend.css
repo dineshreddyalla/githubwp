@@ -135,13 +135,13 @@ div.hfe-nav-menu,
           -webkit-justify-content: flex-end;
           -moz-box-pack: end;
           justify-content: flex-end; }
-.hfe-nav-menu__align-right .hfe-nav-menu__layout-vertical li .elementor-button-wrapper{
+.hfe-nav-menu__align-right .hfe-nav-menu__layout-vertical li.elementor-button-wrapper{
     text-align: right;
 }
-.hfe-nav-menu__align-left .hfe-nav-menu__layout-vertical li .elementor-button-wrapper{
+.hfe-nav-menu__align-left .hfe-nav-menu__layout-vertical li.elementor-button-wrapper{
     text-align: left;
 }
-.hfe-nav-menu__align-center .hfe-nav-menu__layout-vertical li .elementor-button-wrapper{
+.hfe-nav-menu__align-center .hfe-nav-menu__layout-vertical li.elementor-button-wrapper{
     text-align: center;
 }
 .hfe-nav-menu__align-left .hfe-nav-menu {
@@ -276,13 +276,13 @@ div.hfe-nav-menu,
     display: none; 
 }
 
-.hfe-submenu-icon-arrow .hfe-nav-menu .parent-has-child .sub-menu-active .sub-arrow i:before,.hfe-link-redirect-self_link.hfe-submenu-icon-arrow .hfe-nav-menu .parent-has-child .menu-active .sub-arrow i:before {
+.hfe-submenu-icon-arrow .hfe-nav-menu .parent-has-child .sub-menu-active .sub-arrow i:before {
     content: ''; 
 }
-.hfe-submenu-icon-plus .hfe-nav-menu .parent-has-child .sub-menu-active .sub-arrow i:before, .hfe-link-redirect-self_link.hfe-submenu-icon-plus .hfe-nav-menu .parent-has-child .menu-active .sub-arrow i:before {
+.hfe-submenu-icon-plus .hfe-nav-menu .parent-has-child .sub-menu-active .sub-arrow i:before {
     content: '-'; 
 }
-.hfe-submenu-icon-classic .hfe-nav-menu .parent-has-child .sub-menu-active .sub-arrow i:before, .hfe-link-redirect-self_link.hfe-submenu-icon-classic .hfe-nav-menu .parent-has-child .menu-active .sub-arrow i:before {
+.hfe-submenu-icon-classic .hfe-nav-menu .parent-has-child .sub-menu-active .sub-arrow i:before {
     content: ''; 
 }
 
@@ -306,13 +306,6 @@ div.hfe-nav-menu,
 .hfe-nav-menu-icon {
     padding: 0.35em;
     border: 0 solid;
-}
-
-.hfe-nav-menu-icon svg {
-    width: 25px;
-    height: 25px;
-    line-height: 25px;
-    font-size: 25px;
 }
 
 .hfe-nav-menu-icon i:focus {
@@ -913,6 +906,7 @@ div.hfe-nav-menu,
     left: 0;
     right: 0;
     z-index: 999998;
+    background: url(../images/shade.png) repeat;
     background: rgba(0,0,0,.6);
     cursor: pointer;
     -webkit-backface-visibility: hidden;
@@ -939,8 +933,7 @@ div.hfe-nav-menu,
     transform: none;
 }
 
-.hfe-flyout-close,
-.hfe-flyout-close svg {
+.hfe-flyout-close {
     position: absolute;
     top: 0;
     right: 0;
@@ -966,17 +959,13 @@ div.hfe-nav-menu,
 }
 
 .hfe-flyout-wrapper .hfe-side {
-    display: none;
+    display: block;
     position: fixed;
     z-index: 999999;
     padding: 0;
     margin: 0;
     -webkit-overflow-scrolling: touch;
     -webkit-backface-visibility: hidden;
-}
-
-.hfe-flyout-wrapper .hfe-side.hfe-flyout-show {
-    display: block;
 }
 
 .hfe-flyout-content.push {
@@ -990,6 +979,17 @@ div.hfe-nav-menu,
 /* ===========================================================
  *  Flyout Location
  * ======================================================== */
+
+.hfe-flyout-wrapper .hfe-side {
+    /* Allows iframes and google maps to display correctly while still being "hidden" */
+    display: block;
+    position: fixed;
+    z-index: 999999;
+    padding: 0;
+    margin: 0;
+    -webkit-overflow-scrolling: touch;
+    -webkit-backface-visibility: hidden;
+}
 
 .hfe-flyout-wrapper .hfe-side.hfe-flyout-right {
     top: 0;
@@ -1101,9 +1101,9 @@ div.hfe-nav-menu,
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
 
-.elementor-widget-navigation-menu:not(.hfe-nav-menu__align-justify):not(.hfe-menu-item-space-between) a.hfe-menu-item.elementor-button {
+a.hfe-menu-item.elementor-button {
     display: inline-flex;
-} 
+}
 
 .hfe-nav-menu li.elementor-button-wrapper {
     align-self: center;
@@ -1596,13 +1596,13 @@ div.hfe-nav-menu,
     line-height: 1;
 }
 
-.hfe-cart-menu-wrap-custom .hfe-cart-count, 
-.hfe-cart-menu-wrap-custom .hfe-cart-count:after {
+.hfe-cart-menu-wrap-custom .count, 
+.hfe-cart-menu-wrap-custom .count:after {
     border-color: #75c32c;
     color: #75c32c;
 }
 
-.hfe-cart-menu-wrap-custom .hfe-cart-count {
+.hfe-cart-menu-wrap-custom .count {
     font-weight: bold;
     position: relative;
     display: inline-block;
@@ -1624,13 +1624,13 @@ div.hfe-nav-menu,
     line-height: 1;
 }
 
-.hfe-cart-menu-wrap-default .hfe-cart-count, 
-.hfe-cart-menu-wrap-default .hfe-cart-count:after {
+.hfe-cart-menu-wrap-default .count, 
+.hfe-cart-menu-wrap-default .count:after {
     border-color: #75c32c;
     color: #75c32c;
 }
 
-.hfe-cart-menu-wrap-default .hfe-cart-count {
+.hfe-cart-menu-wrap-default .count {
     font-weight: bold;
     position: relative;
     display: inline-block;
@@ -1646,7 +1646,7 @@ div.hfe-nav-menu,
     padding: 0 .4em;
 }
 
-.hfe-cart-menu-wrap-default .hfe-cart-count:after {
+.hfe-cart-menu-wrap-default .count:after {
     bottom: 100%;
     margin-bottom: 0;
     height: .8em;
@@ -1774,6 +1774,8 @@ div.hfe-nav-menu,
 }
 /*search icon toggle css*/
 
+/*search icon toggle css*/
+
 .hfe-search-button-wrapper input[type=search] {
     border: 0;
     padding: 10px;
@@ -1884,49 +1886,4 @@ div.hfe-nav-menu,
 
 .hfe-search-icon-toggle {
     line-height: 1.5;
-}
-
-/*-------Navigation menu active parent---------*/
-.hfe-pointer__double-line.hfe-animation__slide .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):after,.hfe-pointer__double-line.hfe-animation__slide .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):before, .hfe-pointer__underline.hfe-animation__slide .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):after,
- .hfe-pointer__overline.hfe-animation__slide .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):before, .hfe-pointer__overline.hfe-animation__fade .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):before  {
-    width: 100%;
-    left: 0;
-    opacity:1;
-}
-
-.hfe-pointer__double-line.hfe-animation__drop-out .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):after, .hfe-pointer__underline.hfe-animation__drop-out .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):after, .hfe-pointer__overline.hfe-animation__drop-out .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):after,.hfe-pointer__double-line.hfe-animation__drop-in .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):after, .hfe-pointer__underline.hfe-animation__drop-in .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):after, .hfe-pointer__overline.hfe-animation__drop-in .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):after {
-    bottom: 0px;
-    opacity:1;
-}
-.hfe-pointer__double-line.hfe-animation__drop-out .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):before, .hfe-pointer__underline.hfe-animation__drop-out .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):before, .hfe-pointer__overline.hfe-animation__drop-out .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):before, .hfe-pointer__double-line.hfe-animation__drop-in .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):before, .hfe-pointer__underline.hfe-animation__drop-in .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):before, .hfe-pointer__overline.hfe-animation__drop-in .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):before {
-    top: 0px;
-    opacity: 1;
-}
-
-.hfe-pointer__double-line.hfe-animation__grow .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):before, .hfe-pointer__double-line.hfe-animation__grow .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):after, .hfe-pointer__underline.hfe-animation__grow .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):before, .hfe-pointer__underline.hfe-animation__grow .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):after, .hfe-pointer__overline.hfe-animation__grow .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):before, .hfe-pointer__overline.hfe-animation__grow .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):after {
-    height: 3px;
-    width: 100%;
-    left: 0;
-    opacity: 1;
-}
-
-.hfe-pointer__framed.hfe-animation__grow .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):before, .hfe-pointer__framed.hfe-animation__shrink .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):before {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
-}
-
-.hfe-pointer__framed.hfe-animation__fade .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):before, .hfe-pointer__framed.hfe-animation__draw .menu-item.parent.current-menu-item a.hfe-menu-item:before, .hfe-pointer__underline.hfe-animation__fade .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):after, .hfe-pointer__double-line.hfe-animation__fade .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):before, .hfe-pointer__double-line.hfe-animation__fade .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):after {
-    opacity:1;
-}
-
-.hfe-pointer__framed.hfe-animation__corners .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):before, 
-.hfe-pointer__framed.hfe-animation__corners .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):after,
-.hfe-pointer__framed.hfe-animation__draw .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):before, 
-.hfe-pointer__framed.hfe-animation__draw .menu-item.parent.current-menu-item a.hfe-menu-item:not(:hover):not(:focus):not(.current-menu-item):not(.highlighted):after {
-    border-width:3px;
-    width:100%;
-    opacity:1;
-    height:100%;
 }

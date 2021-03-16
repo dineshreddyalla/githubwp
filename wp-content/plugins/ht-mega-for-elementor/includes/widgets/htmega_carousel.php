@@ -93,7 +93,7 @@ class HTMega_Elementor_Widget_Carousel extends Widget_Base {
                 'carosul_image_list',
                 [
                     'type'    => Controls_Manager::REPEATER,
-                    'fields'  => $repeater->get_controls(),
+                    'fields'  => array_values( $repeater->get_controls() ),
                     'default' => [
 
                         [
@@ -250,7 +250,7 @@ class HTMega_Elementor_Widget_Carousel extends Widget_Base {
             $this->add_control(
                 'slautolay',
                 [
-                    'label' => __( 'Slider autoplay', 'htmega-addons' ),
+                    'label' => __( 'Slider auto play', 'htmega-addons' ),
                     'type' => Controls_Manager::SWITCHER,
                     'return_value' => 'yes',
                     'separator' => 'before',
@@ -441,6 +441,10 @@ class HTMega_Elementor_Widget_Carousel extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#ffffff',
                             'selectors' => [
                                 '{{WRAPPER}} .htmega-carousel-activation .slick-arrow' => 'color: {{VALUE}};',
@@ -587,6 +591,10 @@ class HTMega_Elementor_Widget_Carousel extends Widget_Base {
                         [
                             'label' => __( 'Color', 'htmega-addons' ),
                             'type' => Controls_Manager::COLOR,
+                            'scheme' => [
+                                'type' => Scheme_Color::get_type(),
+                                'value' => Scheme_Color::COLOR_1,
+                            ],
                             'default' => '#ffffff',
                             'selectors' => [
                                 '{{WRAPPER}} .htmega-carousel-activation .slick-arrow:hover' => 'color: {{VALUE}};',

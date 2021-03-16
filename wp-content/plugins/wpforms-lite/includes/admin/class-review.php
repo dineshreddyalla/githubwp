@@ -98,7 +98,7 @@ class WPForms_Review {
 			</p>
 		</div>
 		<script type="text/javascript">
-			jQuery( function ( $ ) {
+			jQuery( document ).ready( function ( $ ) {
 				$( document ).on( 'click', '.wpforms-dismiss-review-notice, .wpforms-review-notice button', function ( event ) {
 					if ( ! $( this ).hasClass( 'wpforms-review-out' ) ) {
 						event.preventDefault();
@@ -162,7 +162,7 @@ class WPForms_Review {
 			</p>
 		</div>
 		<script type="text/javascript">
-			jQuery( function ( $ ) {
+			jQuery( document ).ready( function ( $ ) {
 				$( document ).on( 'click', '.wpforms-dismiss-review-notice, .wpforms-review-notice button', function ( event ) {
 					if ( ! $( this ).hasClass( 'wpforms-review-out' ) ) {
 						event.preventDefault();

@@ -270,35 +270,31 @@ class PluginSilentUpgrader extends \Plugin_Upgrader {
 	 * Download a package.
 	 *
 	 * @since 2.8.0
-	 * @since 5.5.0 Added the `$hook_extra` parameter.
 	 *
 	 * @param string $package          The URI of the package. If this is the full path to an
 	 *                                 existing local file, it will be returned untouched.
 	 * @param bool   $check_signatures Whether to validate file signatures. Default false.
-	 * @param array  $hook_extra       Extra arguments to pass to the filter hooks. Default empty array.
 	 * @return string|WP_Error The full path to the downloaded package file, or a WP_Error object.
 	 */
-	public function download_package( $package, $check_signatures = false, $hook_extra = array() ) {
+	public function download_package( $package, $check_signatures = false ) {
 
 		/**
-		 * Filters whether to return the package.
+		 * Filter whether to return the package.
 		 *
 		 * @since 3.7.0
-		 * @since 5.5.0 Added the `$hook_extra` parameter.
 		 *
-		 * @param bool        $reply      Whether to bail without returning the package.
-		 *                                Default false.
-		 * @param string      $package    The package file name.
-		 * @param WP_Upgrader $this       The WP_Upgrader instance.
-		 * @param array       $hook_extra Extra arguments passed to hooked filters.
+		 * @param bool        $reply   Whether to bail without returning the package.
+		 *                             Default false.
+		 * @param string      $package The package file name.
+		 * @param WP_Upgrader $this    The WP_Upgrader instance.
 		 */
-		$reply = apply_filters( 'upgrader_pre_download', false, $package, $this, $hook_extra );
+		$reply = apply_filters( 'upgrader_pre_download', false, $package, $this );
 		if ( false !== $reply ) {
 			return $reply;
 		}
 
-		if ( ! preg_match( '!^(http|https|ftp)://!i', $package ) && file_exists( $package ) ) { // Local file or remote?
-			return $package; // Must be a local file.
+		if ( ! preg_match( '!^(http|https|ftp)://!i', $package ) && file_exists( $package ) ) { //Local file or remote?
+			return $package; //must be a local file..
 		}
 
 		if ( empty( $package ) ) {
@@ -419,7 +415,7 @@ class PluginSilentUpgrader extends \Plugin_Upgrader {
 		$destination       = $args['destination'];
 		$clear_destination = $args['clear_destination'];
 
-		wpforms_set_time_limit( 300 );
+		set_time_limit( 300 );
 
 		if ( empty( $source ) || empty( $destination ) ) {
 			return new WP_Error( 'bad_request', $this->strings['bad_request'] );
@@ -576,25 +572,5 @@ class PluginSilentUpgrader extends \Plugin_Upgrader {
 
 		//Bombard the calling function will all the info which we've just used.
 		return $this->result;
-	}
-
-	/**
-	 * Install a plugin package.
-	 *
-	 * @since 1.6.3
-	 *
-	 * @param string $package The full local path or URI of the package.
-	 * @param array  $args    Optional. Other arguments for installing a plugin package. Default empty array.
-	 *
-	 * @return bool|\WP_Error True if the installation was successful, false or a WP_Error otherwise.
-	 */
-	public function install( $package, $args = array() ) {
-
-		$result = parent::install( $package, $args );
-		if ( true === $result ) {
-			do_action( 'wpforms_plugin_installed', $package );
-		}
-
-		return $result;
 	}
 }

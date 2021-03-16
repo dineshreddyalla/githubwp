@@ -60,11 +60,9 @@ class Menu_Walker extends \Walker_Nav_Menu {
 		$attributes .= ! empty( $item->xfn ) ? ' rel="' . esc_attr( $item->xfn ) . $rel_xfn . '"' : '' . $rel_blank;
 		$attributes .= ! empty( $item->url ) ? ' href="' . esc_attr( $item->url ) . '"' : '';
 
-		$atts = apply_filters( 'hfe_nav_menu_attrs', $attributes );
-
 		$item_output  = $args->has_children ? '<div class="hfe-has-submenu-container">' : '';
 		$item_output .= $args->before;
-		$item_output .= '<a' . $atts;
+		$item_output .= '<a' . $attributes;
 		if ( 0 === $depth ) {
 			$item_output .= ' class = "hfe-menu-item"';
 		} else {
@@ -98,7 +96,7 @@ class Menu_Walker extends \Walker_Nav_Menu {
 	 * @param string $output Output HTML.
 	 * @access public
 	 */
-	function display_element( $element, &$children_elements, $max_depth, $depth, $args, &$output ) {
+	function display_element( $element, &$children_elements, $max_depth, $depth = 0, $args, &$output ) {
 
 		$id_field = $this->db_fields['id'];
 

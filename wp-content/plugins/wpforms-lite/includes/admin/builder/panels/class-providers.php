@@ -71,7 +71,7 @@ class WPForms_Builder_Panel_Providers extends WPForms_Builder_Panel {
 			return;
 		}
 
-		$this->panel_sidebar_section( esc_html__( 'Default', 'wpforms-lite' ), 'default' );
+		$this->panel_sidebar_section( 'Default', 'default' );
 
 		do_action( 'wpforms_providers_panel_sidebar', $this->form );
 	}

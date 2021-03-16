@@ -9,9 +9,11 @@
  */
 
 ?>
+
 <?php astra_entry_before(); ?>
-<article
-<?php
+
+<article 
+	<?php
 		echo astra_attr(
 			'article-blog',
 			array(
@@ -21,8 +23,13 @@
 		);
 		?>
 >
+
 	<?php astra_entry_top(); ?>
+
 	<?php astra_entry_content_blog(); ?>
+
 	<?php astra_entry_bottom(); ?>
+
 </article><!-- #post-## -->
+
 <?php astra_entry_after(); ?>

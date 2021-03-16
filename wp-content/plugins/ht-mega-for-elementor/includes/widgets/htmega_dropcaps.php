@@ -72,6 +72,10 @@ class HTMega_Elementor_Widget_Dropcaps extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#434343',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-dropcaps-area .htmega-dropcaps-inner p' => 'color: {{VALUE}};',
@@ -160,6 +164,10 @@ class HTMega_Elementor_Widget_Dropcaps extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#d6d6d6',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-dropcaps-area .htmega-dropcaps-inner p:first-of-type:first-letter' => 'color: {{VALUE}};',

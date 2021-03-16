@@ -417,6 +417,10 @@ class HTMega_Elementor_Widget_Section_Title extends Widget_Base {
                 [
                     'label' => __( 'Before And After Border Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#412e51',
                     'selectors' => [
                         '{{WRAPPER}} .title-style-two .section-title-txt::before' => 'background-color: {{VALUE}};',
@@ -433,13 +437,16 @@ class HTMega_Elementor_Widget_Section_Title extends Widget_Base {
                 [
                     'label' => __( 'Title Separator Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#412e51',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-section-title span.htmega-title-sperator' => 'background-color: {{VALUE}};',
-                        '{{WRAPPER}} .htmega-section-title span.htmega-title-sperator::before' => 'background-color: {{VALUE}};',
                     ],
                     'condition' => [
-                        'titlestyle' => array('three', 'four'),
+                        'titlestyle' => 'four',
                     ],
                     'separator'=>'before',
                 ]
@@ -487,6 +494,10 @@ class HTMega_Elementor_Widget_Section_Title extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#23252a',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-section-title .section-title-txt' => 'color: {{VALUE}};',
@@ -599,6 +610,10 @@ class HTMega_Elementor_Widget_Section_Title extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#23252a',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-section-title .section-subtitle-txt' => 'color: {{VALUE}};',
@@ -710,6 +725,10 @@ class HTMega_Elementor_Widget_Section_Title extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#f1f1f1',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-section-title .section-advancetitle-txt' => 'color: {{VALUE}};',

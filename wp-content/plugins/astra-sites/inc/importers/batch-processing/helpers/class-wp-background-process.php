@@ -1,10 +1,6 @@
 <?php
 /**
  * WP Background Process
- * https://github.com/A5hleyRich/wp-background-processing
- *
- * Released under the GNU General Public License v2.0
- * https://github.com/deliciousbrains/wp-background-processing/blob/master/license.txt
  *
  * @see  https://github.com/A5hleyRich/wp-background-processing/
  * @package WP-Background-Processing
@@ -104,7 +100,7 @@ if ( ! class_exists( 'WP_Background_Process' ) ) {
 			$key = $this->generate_key();
 
 			if ( ! empty( $this->data ) ) {
-				update_site_option( $key, $this->data, 'no' );
+				update_site_option( $key, $this->data );
 			}
 
 			return $this;
@@ -120,7 +116,7 @@ if ( ! class_exists( 'WP_Background_Process' ) ) {
 		 */
 		public function update( $key, $data ) {
 			if ( ! empty( $data ) ) {
-				update_site_option( $key, $data, 'no' );
+				update_site_option( $key, $data );
 			}
 
 			return $this;

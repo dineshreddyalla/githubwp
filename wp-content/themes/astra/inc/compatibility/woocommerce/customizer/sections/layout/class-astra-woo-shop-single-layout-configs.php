@@ -40,30 +40,10 @@ if ( ! class_exists( 'Astra_Woo_Shop_Single_Layout_Configs' ) ) {
 					'name'     => ASTRA_THEME_SETTINGS . '[single-product-breadcrumb-disable]',
 					'section'  => 'section-woo-shop-single',
 					'type'     => 'control',
-					'control'  => 'ast-toggle-control',
+					'control'  => 'checkbox',
 					'default'  => astra_get_option( 'single-product-breadcrumb-disable' ),
 					'title'    => __( 'Disable Breadcrumb', 'astra' ),
 					'priority' => 16,
-				),
-
-				/**
-				 * Option: Divider on Transparent Header
-				 */
-				array(
-					'name'     => ASTRA_THEME_SETTINGS . '[transparent-header-disable-woo-products-divider]',
-					'type'     => 'control',
-					'section'  => 'section-transparent-header',
-					'control'  => 'ast-divider',
-					'priority' => 26,
-					'settings' => array(),
-					'context'  => array(
-						Astra_Builder_Helper::$general_tab_config,
-						array(
-							'setting'  => ASTRA_THEME_SETTINGS . '[transparent-header-enable]',
-							'operator' => '==',
-							'value'    => '1',
-						),
-					),
 				),
 
 				/**
@@ -75,16 +55,9 @@ if ( ! class_exists( 'Astra_Woo_Shop_Single_Layout_Configs' ) ) {
 					'type'     => 'control',
 					'section'  => 'section-transparent-header',
 					'title'    => __( 'Disable on WooCommerce Product Pages?', 'astra' ),
-					'context'  => array(
-						Astra_Builder_Helper::$general_tab_config,
-						array(
-							'setting'  => ASTRA_THEME_SETTINGS . '[transparent-header-enable]',
-							'operator' => '==',
-							'value'    => '1',
-						),
-					),
+					'required' => array( ASTRA_THEME_SETTINGS . '[transparent-header-enable]', '==', '1' ),
 					'priority' => 26,
-					'control'  => 'ast-toggle-control',
+					'control'  => 'checkbox',
 				),
 			);
 

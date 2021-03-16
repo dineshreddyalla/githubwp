@@ -87,7 +87,7 @@ class Access {
 			),
 		);
 
-		return wpforms_list_insert_after( $tabs, 'geolocation', $tab );
+		return wpforms_list_insert_after( $tabs, 'integrations', $tab );
 	}
 
 	/**

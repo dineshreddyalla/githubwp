@@ -87,7 +87,7 @@ class HTMega_Elementor_Widget_Verticle_Time_Line extends Widget_Base {
                 'custom_content_list',
                 [
                     'type'    => Controls_Manager::REPEATER,
-                    'fields'  => $repeater->get_controls(),
+                    'fields'  => array_values( $repeater->get_controls() ),
                     'default' => [
                         [
                             'content_date' => __( 'Sep<br/>2018', 'htmega-addons' ),

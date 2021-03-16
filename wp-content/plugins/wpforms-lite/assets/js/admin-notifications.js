@@ -43,7 +43,7 @@ var WPFormsAdminNotifications = window.WPFormsAdminNotifications || ( function( 
 		 */
 		init: function() {
 
-			$( app.ready );
+			$( document ).ready( app.ready );
 		},
 
 		/**
@@ -168,9 +168,9 @@ var WPFormsAdminNotifications = window.WPFormsAdminNotifications || ( function( 
 		 */
 		updateNavigation: function() {
 
-			el.$currentMessage = el.$notifications.find( '.wpforms-notifications-message.current' );
-			el.$nextMessage = el.$currentMessage.next( '.wpforms-notifications-message' );
-			el.$prevMessage = el.$currentMessage.prev( '.wpforms-notifications-message' );
+			el.$currentMessage = el.$notifications.find( '.message.current' );
+			el.$nextMessage = el.$currentMessage.next( '.message' );
+			el.$prevMessage = el.$currentMessage.prev( '.message' );
 
 			if ( el.$nextMessage.length === 0 ) {
 				el.$nextButton.addClass( 'disabled' );

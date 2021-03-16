@@ -4,16 +4,14 @@ Donate link: https://wpastra.com/pro/
 Tags: Elementor,Beaver Builder,Templates,Gutenberg,Astra Starter Sites
 Requires at least: 4.4
 Requires PHP: 5.3
-Tested up to: 5.7
-Stable tag: 2.6.2
+Tested up to: 5.4
+Stable tag: 2.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 The growing library of 300+ ready-to-use templates that work with all WordPress themes including Astra, Hello, OceanWP, GeneratePress and more
 
 == Description ==
-
-https://www.youtube.com/watch?v=QUb3gRPtWQg&feature=youtu.be
 
 = FREE TEMPLATES FOR ELEMENTOR, BEAVER BUILDER, BRIZY AND GUTENBERG =
 
@@ -67,7 +65,7 @@ You can extend this library with premium ready-to-use website demos by purchasin
 
 = WHY PEOPLE LOVE THE ASTRA THEME? =
 
-Over 1+ million users are empowering their websites with Astra! From beginners to industry experts, everyone is loving Astra for its performance and ease of use.
+Over 700,000+ users are empowering their websites with Astra! From beginners to industry experts, everyone is loving Astra for its performance and ease of use.
 
 = HERE ARE A FEW REASONS WHY THEY LOVE ASTRA – =
 
@@ -84,15 +82,6 @@ Fetch the website, tweak images and content and go live!
 Use this imported site as a base for your project and don’t waste time starting from scratch!
 
 _<a href="https://wpastra.com/ready-websites/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme">See list of all available sites to import »</a>_
-
-**Credits**
-
-- [History.js](https://github.com/browserstate/history.js) is distributed under the terms of the BSD  License.
-- [WP Background Process](https://github.com/A5hleyRich/wp-background-processing/) is distributed under the terms of the GNU General Public License v2.0.
-- [Widget Importer Exporter](https://github.com/churchthemes/widget-importer-exporter/) is distributed under the terms of the GNU General Public License v2.0.
-- [WordPress Importer](https://github.com/humanmade/WordPress-Importer/) is distributed under the terms of the GNU General Public License v2.0.
-- [EventSource](https://github.com/Yaffle/EventSource/) is distributed under the terms of the MIT License.
-- [Fetch](https://github.com/github/fetch/) is distributed under the terms of the MIT License.
 
 == Installation ==
 
@@ -148,78 +137,6 @@ We are open to suggestions and would love to work on topics that our users are l
 7. Free Images by Pixabay right inside the WordPress media popup.
 
 == Changelog ==
-
-v2.6.2 - 10-March-2021
-
-- Improvement: Used better and optimised way to show the initial sites and pages list on Starter Template dashboard.
-- Improvement: Block Templates - Used version.json instead of package.json to manage the dependency.
-- Improvement: Block Templates - Now users can suggest their required templates via suggestion link.
-- Improvement: Block Templates - Added filter to disable the Block Templates. - https://wpastra.com/docs/filter-to-remove-starter-templates-button/
-- Fix: Block Templates - Retained the selected block pattern category filter after switching between Pages/Patterns tabs.
-- Fix: Rectified the invisible icon from the 'View Site' button.
-- Fix: Brizy pages initially not showing any content.
-
-v2.6.1 - 17-February-2021
-- Fix: Version file was missing due to Auto-Release command.
-
-v2.6.0 - 17-February-2021
-- New: Added the single pages and blocks for the Gutenberg. Read more https://wpastra.com/docs/import-gb-pages-patterns/
-
-v2.5.1 - 1-February-2021
-- Improvement: Improved the admin notice first view logic.
-- Improvement: Improved the experience while subscribing to Starter Templates' news.
-
-v2.5.0 - 29-January-2021
-- New: Added an ability to subscribe to Starter Templates' updates.
-- Improvement: Added new API to support asynchronous import for the Starter Templates.
-
-v2.4.0 - 30-December-2020
-- Improvement: Additional compatibility with WordPress 5.6.
-
-v2.3.9 - 9-December-2020
-- Improvement - Compatibility to WordPress 5.6.
-
-v2.3.8 - 23-October-2020
-- Fix: LearnDash grid CSS not loading after site import.
-
-v2.3.7 - 28-September-2020
-- Fix: Prefixed all Starter Templates Icon classes in order to avoid 3rd party conflicts.
-
-v2.3.6 - 23-September-2020
-- Improvement: Added the Pixabay images support for new post, pages, and custom post type screen.
-- Improvement: Better handling of notices in the case of sync process.
-
-v2.3.5 - 27-August-2020
-- Improvement: Added Safe Search checkbox for Pixabay Image Search.
-- Fix: Elementor 3.0.0 and above import compatibility.
-- Fix: Resolved hotlink issue with Single page import.
-- Fix: Resolved edit permission issue while importing on Elementor page.
-
-v2.3.4 - 13-August-2020
-- Improvement - Compatibility to WordPress 5.5.
-
-v2.3.3 - 7-August-2020
-- Improvement: Minor code changes.
-
-v2.3.2 - 29-June-2020
-- Improvement: Added CartFlows Landing page compatibility to LeadDash courses.
-- Improvement: Handle the LearnDash add-ons links if LearnDash is installed and activated.
-- Fix: Resolve an invalid response from the site import complete AJAX request.
-
-v2.3.1 - 17-June-2020
-- Fix: Fixed the user role and capability issue for WP CLI demo import.
-
-v2.3.0 - 15-June-2020
-- New: Users can now share non-personal usage data to help us test and develop better products.
-
-v2.2.5 - 15-June-2020
-- Improvement: Performance enhancements in order to improve the TTFB (time to first byte).
-- Improvement: Now users can see better error messages (if any) while import.
-- Improvement: Handled the multisite plugin install/activate capability issue for standard administrator user.
-- Fix: Resolved a conflict with Groundhogg plugin.
-- Fix: Resolved a conflict between 3rd party plugins and Pixabay Images.
-- Fix: Fixed latest Brizy page builder related issues.
-- Fix: Fixed the repeated content import issues.
 
 v2.2.4 - 04-May-2020
 - Improvement: Demo data is stored Network Wide for Multisite instance.

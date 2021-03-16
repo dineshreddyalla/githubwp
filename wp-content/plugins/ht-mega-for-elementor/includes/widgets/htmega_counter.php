@@ -132,7 +132,7 @@ class HTMega_Elementor_Widget_Counter extends Widget_Base {
             $this->add_control(
                 'terget_number',
                 [
-                    'label' => __( 'Target Number', 'htmega-addons' ),
+                    'label' => __( 'Terget Number', 'htmega-addons' ),
                     'type' => Controls_Manager::NUMBER,
                     'default' => 100,
                 ]
@@ -287,6 +287,10 @@ class HTMega_Elementor_Widget_Counter extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#696969',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-counter-area .htmega-counter-content .htmega-counter-number' => 'color: {{VALUE}};',
@@ -380,6 +384,10 @@ class HTMega_Elementor_Widget_Counter extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#898989',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-counter-area .htmega-counter-content .htmega-counter-title' => 'color: {{VALUE}};',
@@ -456,6 +464,11 @@ class HTMega_Elementor_Widget_Counter extends Widget_Base {
                 [
                     'label' => __( 'Title After Border Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
+                    'default' => '',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-counter-content h2::before' => 'background-color: {{VALUE}};',
                     ],
@@ -480,6 +493,10 @@ class HTMega_Elementor_Widget_Counter extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#ed552d',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-counter-area .htmega-counter-icon i' => 'color: {{VALUE}};',
@@ -589,6 +606,10 @@ class HTMega_Elementor_Widget_Counter extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#696969',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-counter-area .htmega-counter-content .htmega-prefix' => 'color: {{VALUE}};',
@@ -678,6 +699,10 @@ class HTMega_Elementor_Widget_Counter extends Widget_Base {
                 [
                     'label' => __( 'Color', 'htmega-addons' ),
                     'type' => Controls_Manager::COLOR,
+                    'scheme' => [
+                        'type' => Scheme_Color::get_type(),
+                        'value' => Scheme_Color::COLOR_1,
+                    ],
                     'default' => '#696969',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-counter-area .htmega-counter-content .htmega-suffix' => 'color: {{VALUE}};',

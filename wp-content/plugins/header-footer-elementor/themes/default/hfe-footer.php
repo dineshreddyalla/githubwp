@@ -10,7 +10,6 @@
 
 <?php do_action( 'hfe_footer_before' ); ?>
 <?php do_action( 'hfe_footer' ); ?>
-</div><!-- #page -->
 <?php wp_footer(); ?>
 </body>
 </html> 
