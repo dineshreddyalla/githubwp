@@ -247,7 +247,7 @@ if ( ! class_exists( 'Astra_Beaver_Themer' ) ) :
 					if ( 'default' !== $sidebar ) {
 						add_filter(
 							'astra_page_layout',
-							function( $page_layout ) use ( $sidebar ) { // phpcs:ignore PHPCompatibility.FunctionDeclarations.NewClosure.Found
+							function( $page_layout ) use ( $sidebar ) {
 
 								return $sidebar;
 							}
@@ -258,7 +258,7 @@ if ( ! class_exists( 'Astra_Beaver_Themer' ) ) :
 					if ( 'default' !== $content_layout ) {
 						add_filter(
 							'astra_get_content_layout',
-							function( $layout ) use ( $content_layout ) {// phpcs:ignore PHPCompatibility.FunctionDeclarations.NewClosure.Found
+							function( $layout ) use ( $content_layout ) {
 
 								return $content_layout;
 							}
@@ -273,7 +273,7 @@ if ( ! class_exists( 'Astra_Beaver_Themer' ) ) :
 						} else {
 							add_filter(
 								'ast_main_header_display',
-								function( $display_header ) {// phpcs:ignore PHPCompatibility.FunctionDeclarations.NewClosure.Found
+								function( $display_header ) {
 
 									return 'disabled';
 								}
@@ -286,7 +286,7 @@ if ( ! class_exists( 'Astra_Beaver_Themer' ) ) :
 
 						add_filter(
 							'ast_footer_sml_layout',
-							function( $is_footer ) {// phpcs:ignore PHPCompatibility.FunctionDeclarations.NewClosure.Found
+							function( $is_footer ) {
 
 								return 'disabled';
 							}
@@ -296,7 +296,12 @@ if ( ! class_exists( 'Astra_Beaver_Themer' ) ) :
 					// Override! Footer Widgets.
 					$footer_widgets = get_post_meta( $template_id, 'footer-adv-display', true );
 					if ( 'disabled' === $footer_widgets ) {
-						add_filter( 'astra_advanced_footer_disable', '__return_true' );
+						add_filter(
+							'astra_advanced_footer_disable',
+							function() {
+								return true;
+							}
+						);
 					}
 				}
 			}

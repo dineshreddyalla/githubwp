@@ -36,19 +36,12 @@ if ( ! class_exists( 'Astra_Site_Layout_Configs' ) ) {
 					'name'        => ASTRA_THEME_SETTINGS . '[site-content-width]',
 					'type'        => 'control',
 					'control'     => 'ast-slider',
-					'default'     => astra_get_option( 'site-content-width' ),
+					'default'     => 1200,
 					'section'     => 'section-container-layout',
 					'priority'    => 10,
-					'title'       => __( 'Container Width', 'astra' ),
-					'context'     => defined( 'ASTRA_EXT_VER' ) ? array(
-						Astra_Builder_Helper::$general_tab_config,
-						array(
-							'setting'  => ASTRA_THEME_SETTINGS . '[site-layout]',
-							'operator' => '==',
-							'value'    => 'ast-full-width-layout',
-						),
-					) : array(),
-					'suffix'      => 'px',
+					'title'       => __( 'Width', 'astra' ),
+					'required'    => array( ASTRA_THEME_SETTINGS . '[site-layout]', '==', 'ast-full-width-layout' ),
+					'suffix'      => '',
 					'input_attrs' => array(
 						'min'  => 768,
 						'step' => 1,
@@ -59,6 +52,7 @@ if ( ! class_exists( 'Astra_Site_Layout_Configs' ) ) {
 
 			return array_merge( $configurations, $_configs );
 		}
+
 	}
 }
 

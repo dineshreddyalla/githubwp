@@ -14,7 +14,7 @@
  * @param  {String} selector Selector to match against [optional].
  * @return {Array}           The parent elements.
  */
-var astraGetParents = function ( elem, selector ) {
+var getParents = function ( elem, selector ) {
 
 	// Element.matches() polyfill.
 	if ( ! Element.prototype.matches) {
@@ -51,42 +51,18 @@ var astraGetParents = function ( elem, selector ) {
 };
 
 /**
- * Deprecated: Get all of an element's parent elements up the DOM tree
- *
- * @param  {Node}   elem     The element.
- * @param  {String} selector Selector to match against [optional].
- * @return {Array}           The parent elements.
- */
-var getParents = function ( elem, selector ) {
-	console.warn( 'getParents() function has been deprecated since version 2.5.0 or above of Astra Theme and will be removed in the future. Use astraGetParents() instead.' );
-	astraGetParents( elem, selector );
-}
-
-/**
  * Toggle Class funtion
  *
  * @param  {Node}   elem     The element.
  * @param  {String} selector Selector to match against [optional].
  * @return {Array}           The parent elements.
  */
-var astraToggleClass = function ( el, className ) {
+var toggleClass = function ( el, className ) {
 	if ( el.classList.contains( className ) ) {
 		el.classList.remove( className );
 	} else {
 		el.classList.add( className );
 	}
-};
-
-/**
- * Deprecated: Toggle Class funtion
- *
- * @param  {Node}   elem     The element.
- * @param  {String} selector Selector to match against [optional].
- * @return {Array}           The parent elements.
- */
-var toggleClass = function ( el, className ) {
-	console.warn( 'toggleClass() function has been deprecated since version 2.5.0 or above of Astra Theme and will be removed in the future. Use astraToggleClass() instead.' );
-	astraToggleClass( el, className );
 };
 
 // CustomEvent() constructor functionality in Internet Explorer 9 and higher.
@@ -105,19 +81,19 @@ var toggleClass = function ( el, className ) {
 
 /**
  * Trigget custom JS Event.
- *
+ * 
  * @since 1.4.6
- *
+ * 
  * @link https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent
  * @param {Node} el Dom Node element on which the event is to be triggered.
  * @param {Node} typeArg A DOMString representing the name of the event.
  * @param {String} A CustomEventInit dictionary, having the following fields:
- *			"detail", optional and defaulting to null, of type any, that is an event-dependent value associated with the event.
+ *			"detail", optional and defaulting to null, of type any, that is an event-dependent value associated with the event.	
  */
 var astraTriggerEvent = function astraTriggerEvent( el, typeArg ) {
 	var customEventInit =
 	  arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-
+  
 	var event = new CustomEvent(typeArg, customEventInit);
 	el.dispatchEvent(event);
 };
@@ -177,35 +153,33 @@ var astraTriggerEvent = function astraTriggerEvent( el, typeArg ) {
 			}
 		}
 
-		var parent_li_child = parent_li.querySelectorAll('.menu-item-has-children');
+		var parent_li_child = parent_li.querySelectorAll('.menu-item-has-children, .page_item_has_children');
 		for (var j = 0; j < parent_li_child.length; j++) {
 
 			parent_li_child[j].classList.remove('ast-submenu-expanded');
 			var parent_li_child_sub_menu = parent_li_child[j].querySelector('.sub-menu, .children');
-			if( null !== parent_li_child_sub_menu ) {
-				parent_li_child_sub_menu.style.display = 'none';
-			}
+			parent_li_child_sub_menu.style.display = 'none';
 		};
 
-		var parent_li_sibling = parent_li.parentNode.querySelectorAll('.menu-item-has-children');
+		var parent_li_sibling = parent_li.parentNode.querySelectorAll('.menu-item-has-children, .page_item_has_children');
 		for (var j = 0; j < parent_li_sibling.length; j++) {
 
 			if (parent_li_sibling[j] != parent_li) {
 
 				parent_li_sibling[j].classList.remove('ast-submenu-expanded');
-				var all_sub_menu = parent_li_sibling[j].querySelectorAll('.sub-menu');
+				var all_sub_menu = parent_li_sibling[j].querySelectorAll('.sub-menu, .children');
 				for (var k = 0; k < all_sub_menu.length; k++) {
 					all_sub_menu[k].style.display = 'none';
 				};
 			}
 		};
 
-		if (parent_li.classList.contains('menu-item-has-children') ) {
-			astraToggleClass(parent_li, 'ast-submenu-expanded');
+		if (parent_li.classList.contains('menu-item-has-children') || parent_li.classList.contains('page_item_has_children')) {
+			toggleClass(parent_li, 'ast-submenu-expanded');
 			if (parent_li.classList.contains('ast-submenu-expanded')) {
-				parent_li.querySelector('.sub-menu').style.display = 'block';
+				parent_li.querySelector('.sub-menu, .children').style.display = 'block';
 			} else {
-				parent_li.querySelector('.sub-menu').style.display = 'none';
+				parent_li.querySelector('.sub-menu, .children').style.display = 'none';
 			}
 		}
 	};
@@ -216,7 +190,7 @@ var astraTriggerEvent = function astraTriggerEvent( el, typeArg ) {
 
 	AstraToggleMenu = function( astra_menu_toggle ) {
 		console.warn('AstraToggleMenu() function has been deprecated since version 1.6.5 or above of Astra Theme and will be removed in the future. Use AstraToggleSubMenu() instead.');
-
+		
 		// Add Eventlisteners for Submenu.
 		if (astra_menu_toggle.length > 0) {
 			for (var i = 0; i < astra_menu_toggle.length; i++) {
@@ -242,7 +216,7 @@ var astraTriggerEvent = function astraTriggerEvent( el, typeArg ) {
 				if ('undefined' !== typeof __main_header_all[i]) {
 
 					if (document.querySelector("header.site-header").classList.contains("ast-menu-toggle-link")) {
-						var astra_menu_toggle = __main_header_all[i].querySelectorAll('.ast-header-break-point .main-header-menu .menu-item-has-children > .menu-link, .ast-header-break-point ul.main-header-menu .ast-menu-toggle');
+						var astra_menu_toggle = __main_header_all[i].querySelectorAll('.ast-header-break-point .main-header-menu .menu-item-has-children > a, .ast-header-break-point .main-header-menu .page_item_has_children > a, .ast-header-break-point ul.main-header-menu .ast-menu-toggle');
 					} else {
 						var astra_menu_toggle = __main_header_all[i].querySelectorAll('ul.main-header-menu .ast-menu-toggle');
 					}
@@ -265,23 +239,24 @@ var astraTriggerEvent = function astraTriggerEvent( el, typeArg ) {
 		var event_index = this.getAttribute('data-index');
 
 		if ('undefined' === typeof __main_header_all[event_index]) {
+
 			return false;
 		}
 
-		var menuHasChildren = __main_header_all[event_index].querySelectorAll('.menu-item-has-children');
+		var menuHasChildren = __main_header_all[event_index].querySelectorAll('.menu-item-has-children, .page_item_has_children');
 		for (var i = 0; i < menuHasChildren.length; i++) {
 			menuHasChildren[i].classList.remove('ast-submenu-expanded');
-			var menuHasChildrenSubMenu = menuHasChildren[i].querySelectorAll('.sub-menu');
+			var menuHasChildrenSubMenu = menuHasChildren[i].querySelectorAll('.sub-menu, .children');
 			for (var j = 0; j < menuHasChildrenSubMenu.length; j++) {
 				menuHasChildrenSubMenu[j].style.display = 'none';
 			};
 		}
 
 		var menu_class = this.getAttribute('class') || '';
-
+		
 		if ( menu_class.indexOf('main-header-menu-toggle') !== -1 ) {
-			astraToggleClass(__main_header_all[event_index], 'toggle-on');
-			astraToggleClass(menu_toggle_all[event_index], 'toggled');
+			toggleClass(__main_header_all[event_index], 'toggle-on');
+			toggleClass(menu_toggle_all[event_index], 'toggled');
 			if (__main_header_all[event_index].classList.contains('toggle-on')) {
 				__main_header_all[event_index].style.display = 'block';
 				document.body.classList.add("ast-main-header-nav-open");
@@ -323,7 +298,7 @@ var astraTriggerEvent = function astraTriggerEvent( el, typeArg ) {
 	}, false);
 
 	window.addEventListener('resize', function () {
-		// Skip resize event when keyboard display event triggers on devices.
+		// Skip resize event when keyboard display event triggers on devices. 
 		if( 'INPUT' !== document.activeElement.tagName ) {
 			updateHeaderBreakPoint();
 			AstraToggleSetup();
@@ -335,7 +310,7 @@ var astraTriggerEvent = function astraTriggerEvent( el, typeArg ) {
 		/**
 		 * Navigation Keyboard Navigation.
 		 */
-		var container, count;
+		var container, button, menu, links, subMenus, i, len, count;
 
 		container = document.querySelectorAll( '.navigation-accessibility' );
 
@@ -348,17 +323,17 @@ var astraTriggerEvent = function astraTriggerEvent( el, typeArg ) {
 
 
 	var get_browser = function () {
-	    var ua = navigator.userAgent,tem,M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+	    var ua = navigator.userAgent,tem,M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || []; 
 	    if(/trident/i.test(M[1])) {
-	        tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+	        tem = /\brv[ :]+(\d+)/g.exec(ua) || []; 
 	        return;
-	    }
+	    }   
 	    if( 'Chrome'  === M[1] ) {
 	        tem = ua.match(/\bOPR|Edge\/(\d+)/)
-	        if(tem != null)   {
+	        if(tem != null)   { 
 	        	return;
 	        	}
-	        }
+	        }   
 	    M = M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
 	    if((tem = ua.match(/version\/(\d+)/i)) != null) {
 	    	M.splice(1,1,tem[1]);
@@ -371,7 +346,7 @@ var astraTriggerEvent = function astraTriggerEvent( el, typeArg ) {
 	}
 
 	get_browser();
-
+	
 	/* Search Script */
 	var SearchIcons = document.getElementsByClassName( 'astra-search-icon' );
 	for (var i = 0; i < SearchIcons.length; i++) {
@@ -400,15 +375,16 @@ var astraTriggerEvent = function astraTriggerEvent( el, typeArg ) {
 	/* Hide Dropdown on body click*/
 	document.body.onclick = function( event ) {
 		if ( typeof event.target.classList !==  'undefined' ) {
-			if ( ! event.target.classList.contains( 'ast-search-menu-icon' ) && astraGetParents( event.target, '.ast-search-menu-icon' ).length === 0 && astraGetParents( event.target, '.ast-search-icon' ).length === 0  ) {
+			if ( ! event.target.classList.contains( 'ast-search-menu-icon' ) && getParents( event.target, '.ast-search-menu-icon' ).length === 0 && getParents( event.target, '.ast-search-icon' ).length === 0  ) {
 				var dropdownSearchWrap = document.getElementsByClassName( 'ast-search-menu-icon' );
+				
 				for (var i = 0; i < dropdownSearchWrap.length; i++) {
 					dropdownSearchWrap[i].classList.remove( 'ast-dropdown-active' );
 				};
 			}
-		}
+		}	
 	}
-
+	
 	/**
 	 * Navigation Keyboard Navigation.
 	 */
@@ -465,7 +441,7 @@ var astraTriggerEvent = function astraTriggerEvent( el, typeArg ) {
 			links[i].addEventListener( 'focus', toggleFocus, true );
 			links[i].addEventListener( 'blur', toggleBlurFocus, true );
 			links[i].addEventListener( 'click', toggleClose, true );
-		}
+		}	
 	}
 
 	/**
@@ -475,7 +451,7 @@ var astraTriggerEvent = function astraTriggerEvent( el, typeArg ) {
      * @return void
      */
     function toggleClose( )
-    {
+    {		
         var self = this || '',
             hash = '#';
 
@@ -484,7 +460,7 @@ var astraTriggerEvent = function astraTriggerEvent( el, typeArg ) {
             if( link.indexOf( hash ) !== -1 ) {
             	var link_parent = self.parentNode;
                 if ( document.body.classList.contains('ast-header-break-point') && ! ( document.querySelector("header.site-header").classList.contains("ast-menu-toggle-link") && link_parent.classList.contains("menu-item-has-children") ) ) {
-
+                	
                 	/* Close Main Header Menu */
 	                var main_header_menu_toggle = document.querySelector( '.main-header-menu-toggle' );
 	                main_header_menu_toggle.classList.remove( 'toggled' );
@@ -515,7 +491,7 @@ var astraTriggerEvent = function astraTriggerEvent( el, typeArg ) {
 	                	after_header_bar_navigation.classList.remove( 'toggle-on' );
 						after_header_bar.style.display = 'none';
 					}
-
+					
 					astraTriggerEvent( document.querySelector('body'), 'astraMenuHashLinkClicked' );
                 } else {
 	            	while ( -1 === self.className.indexOf( 'nav-menu' ) ) {
